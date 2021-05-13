@@ -20,8 +20,29 @@ foreach($cursor as $document) {
     $allergenes=$document['allergens'];
     $traces=$document['traces'];
     $portion=$document['serving_quantity'];
-}
-?>
+    $additifs=$document['additives_en'];
+    $ecoscore=$document['ecoscore_score_fr'];
+    $ecoscore_g=$document['ecoscore_grade_fr'];
+    $energie=$document['energy_100g'];
+    $gras=$document['fat_100g'];
+    $acides=$document['saturated-fat_100g'];
+    $glucides=$document['carbohydrates_100g'];
+    $sucres=$document['sugars_100g'];
+    $fibres=$document['fiber_100g'];
+    $proteines=$document['proteins_100g'];
+    $sel=$document['salt_100g'];
+    $alcool=$document['alcohol_100g'];
+    $calcium=$document['calcium_100g'];
+    $vitamine_b6=$document['vitamin-b6_100g'];
+    $vitamine_b12=$document['vitamin-b12_100g'];
+    $vitamine_b1=$document['vitamin-b1_100g'];
+    $vitamine_b9=$document['vitamin-b9_100g'];
+    $vitamine_b2=$document['vitamin-b2_100g'];
+    $amidons=$document['starch_100g'];
+    $fer=$document['iron_100g'];
+    $carbon_footprint=$document['carbon-footprint_100g'];
+   }
+   ?>
 <!DOCTYPE html>
 
 <html lang="fr" xmlns="http://www.w3.org/1999/xhtml%22%3E">
@@ -42,11 +63,11 @@ foreach($cursor as $document) {
         <div class="middle">
             <div class="row">
                 <h2>Lancez une autre recherche</h2>
-                <form>
-                    <p><input type="search" id="site-search" name="q" placeholder="Insérer le nom de l'aliment"></p>
+                <form method="post" action="traitement.php">
+                    <p><input type="search" id="site-search" name="search_name" placeholder="Insérer le nom de l'aliment"></p>
                     <p>
-                        <button type="button">Recherche avancée</button>
-                        <button type="button">Recherche rapide</button>
+                        <button type="submit" name="avancee">Recherche avancée</button>
+                        <button type="submit" name="rapide">Recherche rapide</button>
                     </p>
                 </form>
             </div>
@@ -71,6 +92,9 @@ foreach($cursor as $document) {
                             <li><p>Liste des ingrédients : <?php echo $ingredients ?></p></li>
                             <li><p>Liste des allergènes : <?php echo $allergenes ?></p></li>
                             <li><p>Contient des traces de : <?php echo $traces ?></p></li>
+                            <li><p>Additifs : <?php echo $additifs ?></p></li>
+                            <li><p>Éco score : <?php echo $ecoscore ?></p></li>
+                            <li><p>Éco grade : <?php echo $ecoscore_g ?></p></li>
                             <li><p>Portion : <?php echo $portion ?></p></li>
                             <li><p>Tableau des apports nutritionnels :</p></li>
                             <li>
@@ -79,99 +103,80 @@ foreach($cursor as $document) {
                                         <tr>
                                             <th>Nutriments</th>
                                             <th>Dans 100g/100ml</th>
-                                            <th>Par portion (30g)</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>Energie</td>
-                                            <td>?</td>
-                                            <td>?</td>
+                                            <td><?php echo $energie ?></td>
                                         </tr>
                                         <tr>
                                             <td>Matières grasses</td>
-                                            <td>?</td>
-                                            <td>?</td>
+                                            <td><?php echo $gras ?></td>
                                         </tr>
                                         <tr>
                                             <td>Acides gras saturés</td>
-                                            <td>?</td>
-                                            <td>?</td>
+                                            <td><?php echo $acides ?></td>
                                         </tr>
                                         <tr>
                                             <td>Glucides</td>
-                                            <td>?</td>
-                                            <td>?</td>
+                                            <td><?php echo $glucides ?></td>
                                         </tr>
                                         <tr>
                                             <td>Sucres</td>
-                                            <td>?</td>
-                                            <td>?</td>
+                                            <td><?php echo $sucres ?></td>
                                         </tr>
                                         <tr>
                                             <td>Fibres alimentaires</td>
-                                            <td>?</td>
-                                            <td>?</td>
+                                            <td><?php echo $fibres ?></td>
                                         </tr>
                                         <tr>
                                             <td>Protéines</td>
-                                            <td>?</td>
-                                            <td>?</td>
+                                            <td><?php echo $proteines ?></td>
                                         </tr>
                                         <tr>
                                             <td>Sel</td>
-                                            <td>?</td>
-                                            <td>?</td>
+                                            <td><?php echo $sel ?></td>
                                         </tr>
                                         <tr>
                                             <td>Alcool</td>
-                                            <td>?</td>
-                                            <td>?</td>
+                                            <td><?php echo $alcool ?></td>
                                         </tr>
                                         <tr>
                                             <td>Calcium</td>
-                                            <td>?</td>
-                                            <td>?</td>
+                                            <td><?php echo $calcium ?></td>
                                         </tr>
                                         <tr>
                                             <td>Vitamine-b6-pyridoxine</td>
-                                            <td>?</td>
-                                            <td>?</td>
+                                            <td><?php echo $vitamine_b6 ?></td>
                                         </tr>
                                         <tr>
                                             <td>Vitamine-b12-cobalamine</td>
-                                            <td>?</td>
-                                            <td>?</td>
+                                            <td><?php echo $vitamine_b12 ?></td>
                                         </tr>
                                         <tr>
                                             <td>Vitamine-b1-thiamine</td>
-                                            <td>?</td>
-                                            <td>?</td>
+                                            <td><?php echo $vitamine_b1 ?></td>
                                         </tr>
                                         <tr>
                                             <td>Vitamine-b9-acide-folique</td>
-                                            <td>?</td>
-                                            <td>?</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Vitamine-b3-vitamine-pp-niacine</td>
-                                            <td>?</td>
-                                            <td>?</td>
+                                            <td><?php echo $vitamine_b9 ?></td>
                                         </tr>
                                         <tr>
                                             <td>Vitamine-b2-riboflavine</td>
-                                            <td>?</td>
-                                            <td>?</td>
+                                            <td><?php echo $vitamine_b2 ?></td>
                                         </tr>
                                         <tr>
                                             <td>Amidons</td>
-                                            <td>?</td>
-                                            <td>?</td>
+                                            <td><?php echo $amidons ?></td>
                                         </tr>
                                         <tr>
                                             <td>Fer</td>
-                                            <td>?</td>
-                                            <td>?</td>
+                                            <td><?php echo $fer ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Empreinte de carbon</td>
+                                            <td><?php echo $carbon_footprint ?></td>
                                         </tr>
                                     </tbody>
                                 </table>
