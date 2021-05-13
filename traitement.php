@@ -1,5 +1,7 @@
 <?php 
 require 'vendor/autoload.php';
+session_start();
+$_SESSION["search_name"] = $_POST['search_name'];
 $client = new MongoDB\Client(
     'mongodb+srv://Yosra:iaIqRPWxXN9AsFuF@cluster0.bbe6n.mongodb.net/PRODUITS_DB?retryWrites=true&w=majority');
 $db = $client->PRODUITS_DB;
@@ -18,7 +20,7 @@ else {
 		header('Location: liste_produits.html');
 	}
 	elseif ($i==1) {
-		header('Location: fiche_produit.html');
+		header('Location: fiche_produit.php');
 	}
 	elseif ($i==0) {
 		header('Location: produit_404.html');
