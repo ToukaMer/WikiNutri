@@ -152,7 +152,7 @@ select {
   border-radius: 16px;
 }
 
-.row button[type=button] {
+.row button {
   font-family: 'Montserrat Alternates', sans-serif;
   background-color: #808080;
   border: none;
