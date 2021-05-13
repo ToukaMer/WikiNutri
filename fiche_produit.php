@@ -66,8 +66,8 @@ foreach($cursor as $document) {
                 <form method="post" action="traitement.php">
                     <p><input type="search" id="site-search" name="search_name" placeholder="Insérer le nom de l'aliment"></p>
                     <p>
-                        <button type="submit" name="avancee">Recherche avancée</button>
                         <button type="submit" name="rapide">Recherche rapide</button>
+                        <button type="submit" name="avancee">Recherche avancée</button>
                     </p>
                 </form>
             </div>
