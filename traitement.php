@@ -13,7 +13,7 @@ foreach($cursor as $document) {
 	$i=$i+1;
 }
 if ($i>1) {
-		header('Location: liste_produits.html');
+    header('Location: liste_produits.html');
 }
 elseif ($i==1) {
 	header('Location: fiche_produit.php');
