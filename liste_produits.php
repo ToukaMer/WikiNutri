@@ -2,7 +2,7 @@
 require 'vendor/autoload.php';
 session_start();
 $_SESSION['search_val'] = $_POST['search_name'];
-$search_value = $_SESSION['search_name'];
+$search_value = $_SESSION['search_val'];
 $client = new MongoDB\Client(
     'mongodb+srv://Yosra:iaIqRPWxXN9AsFuF@cluster0.bbe6n.mongodb.net/PRODUITS_DB?retryWrites=true&w=majority');
 $db = $client->PRODUITS_DB;
@@ -31,6 +31,7 @@ if(isset($_POST['calories_num'])) {
     }
 
 }
+
 
 $cursor=$collection->find($filters,$options);
 
