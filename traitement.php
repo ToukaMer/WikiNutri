@@ -22,8 +22,8 @@ if (isset($_POST['rapide'])) {
         header('Location: liste_produits.php');
 	}
 	elseif ($i==1) {
-        echo '<pre>'; print_r(array("product_name" => $regex)); echo '</pre>';
-        //header('Location: fiche_produit.php');
+        //echo '<pre>'; print_r(array("product_name" => $regex)); echo '</pre>';
+        header('Location: fiche_produit.php');
     }
 	elseif ($i==0) {
 		header('Location: produit_404.html');
