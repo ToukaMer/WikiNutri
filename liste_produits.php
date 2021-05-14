@@ -1,14 +1,42 @@
 <?php 
 require 'vendor/autoload.php';
 session_start();
-$search = $_SESSION["search_name"];
+$_SESSION['search_val'] = $_POST['search_name'];
+$search_value = $_SESSION['search_name'];
 $client = new MongoDB\Client(
     'mongodb+srv://Yosra:iaIqRPWxXN9AsFuF@cluster0.bbe6n.mongodb.net/PRODUITS_DB?retryWrites=true&w=majority');
 $db = $client->PRODUITS_DB;
 $collection = $client->$db->PRODUITS;
-$search_value = $search;
+$filters = [];
+$options = [];
 $regex = new MongoDB\BSON\Regex($search_value, 'i');
-$cursor=$collection->find( array( "product_name" => $regex));
+$filters += ["product_name"=>$regex];
+//$filters += ['energy-kcal_100g' => ['$lte' => '2500']];
+
+
+echo $search_value;
+echo $_POST['calories_num'];
+//echo $_POST['search_name'];
+
+
+if(isset($_POST['calories_num'])) {
+    if($_POST['calories'] == "egal") {
+        $filters += ['energy-kcal_100g' => ['$eq' => $_POST['calories_num']]];
+    }
+    elseif ($_POST['calories'] == "sup"){
+        $filters += ['energy-kcal_100g' => ['$gte' => $_POST['calories_num']]];
+    }
+    elseif($_POST['calories'] == "inf") {
+        $filters += ['energy-kcal_100g' => ['$lte' => $_POST['calories_num']]];
+    }
+
+}
+
+$cursor=$collection->find($filters,$options);
+
+echo '<pre>'; print_r($filters); echo '</pre>';
+
+
 ?>
 <!DOCTYPE html>
 
@@ -20,6 +48,7 @@ $cursor=$collection->find( array( "product_name" => $regex));
     <title>Liste Produits</title>
 </head>
 <body>
+
     <div class="grid-container">
         <div class="header">
             <h1>WikiNutri.</h1>
@@ -36,7 +65,9 @@ $cursor=$collection->find( array( "product_name" => $regex));
                         $name=$document['product_name'];
                         $image=$document['image_url'];
                         echo "<a href='fiche_produit.php?product=$name'><figure> <img src='$image' alt='$name' width='200' height='200'> <figcaption>$name</figcaption> </figure></a>";
-	                }?>
+
+	                }
+                    ?>
                 </div>
             </div>
             <div class="row">

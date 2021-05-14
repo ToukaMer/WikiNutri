@@ -11,7 +11,7 @@ if(isset($_GET['product'])){
 else{
     $name=$_SESSION['search_name'];
 }
-$cursor=$collection->find( array( "product_name" => $name));
+$cursor=$collection->find( array("product_name" => $name));
 foreach($cursor as $document) {
     $name=$document['product_name'];
     $image=$document['image_url'];
@@ -51,7 +51,7 @@ foreach($cursor as $document) {
    ?>
 <!DOCTYPE html>
 
-<html lang="fr" xmlns="http://www.w3.org/1999/xhtml%22%3E">
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

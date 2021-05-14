@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="fr" xmlns="http://www.w3.org/1999/xhtml%22%3E">
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,94 +23,98 @@
                 <h2>Vous avez envie de connaître tout sur les produits alimentaires que vous consommez ? &#127851;</h2>
                 <h2>Vous souhaitez trouver des produits qui ne contiennent pas certains allèrgenes ? &#127838;</h2>
             </div>
-            <div class="row">
-                <h3>Lancer une recherche rapide avec le nom du produits souhaité &#128523;</h3>
-                <h3>Ou cliquer sur recherche avancée pour choisir vos préférences &#128064;</h3>
-                <form method="post" action="traitement.php">
+            <form method="post" action="liste_produits.php">
+
+                <div class="row">
+                    <h3>Lancer une recherche rapide avec le nom du produits souhaité &#128523;</h3>
+                    <h3>Ou cliquer sur recherche avancée pour choisir vos préférences &#128064;</h3>
+                    <!-- <form method="post" action="fiche_produit.php"> -->
                     <p><input type="search" id="site-search" name="search_name" placeholder="Insérer le nom de l'aliment" required></p>
                     <p><button type="submit" name="rapide">Recherche rapide</button>
-                </form>
-                <button name="avancee" class="slideToggle">Recherche avancée</button></p>
-            </div>
+                    <button name="avancee" class="slideToggle">Recherche avancée</button></p>
 
-            <div class="row" id="panel" class="ferme">
-                <div class="column">
-                    <p>Choisir un allèrgene à éliminer :
-                        <select name="pets" id="pet-select">
-                            <option value="">Aucun</option>
-                            <option value="dog">Dog</option>
-                            <option value="cat">Cat</option>
-                        </select></p>
-                    <p>Choisir une catégorie :
-                        <select name="pets" id="pet-select">
-                            <option value="">Toutes</option>
-                            <option value="dog">Dog</option>
-                            <option value="cat">Cat</option>
-                        </select></p>
-                    <p>Choisir une marque :
-                        <select name="pets" id="pet-select">
-                            <option value="">Toutes</option>
-                            <option value="dog">Dog</option>
-                            <option value="cat">Cat</option>
-                            <option value="kellogs">Kellogs</option>
-                        </select></p>
-                    <p>Choisir un nutriscore :
-                        <select name="nutriscore">
-                            <option value="">Tous</option>
-                            <option value="a">A</option>
-                            <option value="b">B</option>
-                            <option value="c">C</option>
-                            <option value="d">D</option>
-                            <option value="e">E</option>
-                        </select></p>
                 </div>
-                <div class="column">
-                    <p>Choisir un label :
-                        <select name="pets" id="pet-select">
-                            <option value="">Tous</option>
-                            <option value="dog">Dog</option>
-                            <option value="cat">Cat</option>
-                        </select></p>
-                    <p>Choisir un éco score :
-                        <select name="pets" id="pet-select">
-                            <option value="">Tous</option>
-                            <option value="dog">Dog</option>
-                            <option value="cat">Cat</option>
-                        </select></p>
-                    <p>Choisir par nutriment :
-                        <select name="nutriment_choix">
-                            <option value="oui">Contient</option>
-                            <option value="non">Ne contient pas</option>
-                        </select>
-                        <select name="nutriment">
-                            <option value="tous">Tous</option>
-                            <option value="nut1">Nutriment1</option>
-                            <option value="nut2">Nutriment2</option>
-                        </select>
-                    </p>
-                    <p>Choisir par ingrédient :
-                        <select name="ingredient_choix">
-                            <option value="oui">Contient</option>
-                            <option value="non">Ne contient pas</option>
-                        </select>
-                        <select name="ingredient">
-                            <option value="tous">Tous</option>
-                            <option value="ing1">Ingrédient1</option>
-                            <option value="ing2">Ingrédient2</option>
-                        </select>
-                    </p>
-                    <p>Choisir par nombre de calories :
-                        <select name="calories">
-                            <option value="egal">Égal</option>
-                            <option value="sup">Supérieur</option>
-                            <option value="inf">Inférieur</option>
-                        </select> à
-                        <input type="number" name="calories_num" min="0"></p>
+
+                <div class="row" id="panel" class="ferme">
+                    <div class="column">
+                        <p>Choisir un allèrgene à éliminer :
+                            <select name="pets" id="pet-select">
+                                <option value="">Aucun</option>
+                                <option value="dog">Dog</option>
+                                <option value="cat">Cat</option>
+                            </select></p>
+                        <p>Choisir une catégorie :
+                            <select name="pets" id="pet-select">
+                                <option value="">Toutes</option>
+                                <option value="dog">Dog</option>
+                                <option value="cat">Cat</option>
+                            </select></p>
+                        <p>Choisir une marque :
+                            <select name="pets" id="pet-select">
+                                <option value="">Toutes</option>
+                                <option value="dog">Dog</option>
+                                <option value="cat">Cat</option>
+                                <option value="kellogs">Kellogs</option>
+                            </select></p>
+                        <p>Choisir un nutriscore :
+                            <select name="nutriscore">
+                                <option value="">Tous</option>
+                                <option value="a">A</option>
+                                <option value="b">B</option>
+                                <option value="c">C</option>
+                                <option value="d">D</option>
+                                <option value="e">E</option>
+                            </select></p>
+                    </div>
+                    <div class="column">
+                        <p>Choisir un label :
+                            <select name="pets" id="pet-select">
+                                <option value="">Tous</option>
+                                <option value="dog">Dog</option>
+                                <option value="cat">Cat</option>
+                            </select></p>
+                        <p>Choisir un éco score :
+                            <select name="pets" id="pet-select">
+                                <option value="">Tous</option>
+                                <option value="dog">Dog</option>
+                                <option value="cat">Cat</option>
+                            </select></p>
+                        <p>Choisir par nutriment :
+                            <select name="nutriment_choix">
+                                <option value="oui">Contient</option>
+                                <option value="non">Ne contient pas</option>
+                            </select>
+                            <select name="nutriment">
+                                <option value="tous">Tous</option>
+                                <option value="nut1">Nutriment1</option>
+                                <option value="nut2">Nutriment2</option>
+                            </select>
+                        </p>
+                        <p>Choisir par ingrédient :
+                            <select name="ingredient_choix">
+                                <option value="oui">Contient</option>
+                                <option value="non">Ne contient pas</option>
+                            </select>
+                            <select name="ingredient">
+                                <option value="tous">Tous</option>
+                                <option value="ing1">Ingrédient1</option>
+                                <option value="ing2">Ingrédient2</option>
+                            </select>
+                        </p>
+                        <p>Choisir par nombre de calories :
+                            <select name="calories">
+                                <option value="egal">Égal</option>
+                                <option value="sup">Supérieur</option>
+                                <option value="inf">Inférieur</option>
+                            </select> à
+                            <input type="number" name="calories_num" min="0"></p>
+                    </div>
+                    <p><button type="submit" name="submit_avancee">Soumettre</button></p>
+
                 </div>
-                <p><button type="button">Soumettre</button></p>
-            </div>
-        
-        <div class="right"></div>
+            </form>
+
+            <div class="right"></div>
         </div>
   
         <div class="footer">
