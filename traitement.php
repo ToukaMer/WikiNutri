@@ -12,18 +12,14 @@ foreach($cursor as $document) {
 //    print_r($document);
 	$i=$i+1;
 }
-if (isset($_POST['avancee'])) {
-	header('Location: recherche_avancee.html');
-}
-else {
-	if ($i>1) {
+if ($i>1) {
 		header('Location: liste_produits.html');
-	}
-	elseif ($i==1) {
-		header('Location: fiche_produit.php');
-	}
-	elseif ($i==0) {
-		header('Location: produit_404.html');
-	}
 }
+elseif ($i==1) {
+	header('Location: fiche_produit.php');
+}
+elseif ($i==0) {
+	header('Location: produit_404.html');
+}
+
 ?>
