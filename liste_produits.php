@@ -65,6 +65,7 @@ $cursor=$collection->find($filters,$options);
                     foreach($cursor as $document) {
                         $name=$document['product_name'];
                         $image=$document['image_url'];
+                        $code=$document['_id'];
                         echo "<a href='fiche_produit.php?product=$name'><figure> <img src='$image' alt='$name' width='200' height='200'> <figcaption>$name</figcaption> </figure></a>";
 
 	                }

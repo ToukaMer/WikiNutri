@@ -6,47 +6,48 @@ $client = new MongoDB\Client(
 $db = $client->PRODUITS_DB;
 $collection = $client->$db->PRODUITS;
 if(isset($_GET['product'])){
-    $name=$_GET['product'];
+    $product_id=$_GET['product'];
+    //$cursor=$collection->findOne( array(new MongoDB\BSON\ObjectID($product_id)));
 }
 else{
-    $name=$_SESSION['search_name'];
+    $product_id=$_SESSION['search_name'];
 }
-$cursor=$collection->find( array("product_name" => $name));
+$cursor=$collection->find( array("product_name" => $product_id));
 foreach($cursor as $document) {
-    $name=$document['product_name'];
-    $image=$document['image_url'];
-    $nutriscore=$document['nutriscore_score'];
-    $novascore=$document['nova_group'];
-    $poids=$document['quantity'];
-    $emballage=$document['packaging'];
-    $marque=$document['brands'];
-    $categories=$document['categories'];
-    $labels=$document['labels'];
-    $ingredients=$document['ingredients_text'];
-    $allergenes=$document['allergens'];
-    $traces=$document['traces'];
-    $portion=$document['serving_quantity'];
-    $additifs=$document['additives_en'];
-    $ecoscore=$document['ecoscore_score_fr'];
-    $ecoscore_g=$document['ecoscore_grade_fr'];
-    $energie=$document['energy_100g'];
-    $gras=$document['fat_100g'];
-    $acides=$document['saturated-fat_100g'];
-    $glucides=$document['carbohydrates_100g'];
-    $sucres=$document['sugars_100g'];
-    $fibres=$document['fiber_100g'];
-    $proteines=$document['proteins_100g'];
-    $sel=$document['salt_100g'];
-    $alcool=$document['alcohol_100g'];
-    $calcium=$document['calcium_100g'];
-    $vitamine_b6=$document['vitamin-b6_100g'];
-    $vitamine_b12=$document['vitamin-b12_100g'];
-    $vitamine_b1=$document['vitamin-b1_100g'];
-    $vitamine_b9=$document['vitamin-b9_100g'];
-    $vitamine_b2=$document['vitamin-b2_100g'];
-    $amidons=$document['starch_100g'];
-    $fer=$document['iron_100g'];
-    $carbon_footprint=$document['carbon-footprint_100g'];
+        $name=$document['product_name'];
+        $image=$document['image_url'];
+        $nutriscore=$document['nutriscore_score'];
+        $novascore=$document['nova_group'];
+        $poids=$document['quantity'];
+        $emballage=$document['packaging'];
+        $marque=$document['brands'];
+        $categories=$document['categories'];
+        $labels=$document['labels'];
+        $ingredients=$document['ingredients_text'];
+        $allergenes=$document['allergens'];
+        $traces=$document['traces'];
+        $portion=$document['serving_quantity'];
+        $additifs=$document['additives_en'];
+        $ecoscore=$document['ecoscore_score_fr'];
+        $ecoscore_g=$document['ecoscore_grade_fr'];
+        $energie=$document['energy_100g'];
+        $gras=$document['fat_100g'];
+        $acides=$document['saturated-fat_100g'];
+        $glucides=$document['carbohydrates_100g'];
+        $sucres=$document['sugars_100g'];
+        $fibres=$document['fiber_100g'];
+        $proteines=$document['proteins_100g'];
+        $sel=$document['salt_100g'];
+        $alcool=$document['alcohol_100g'];
+        $calcium=$document['calcium_100g'];
+        $vitamine_b6=$document['vitamin-b6_100g'];
+        $vitamine_b12=$document['vitamin-b12_100g'];
+        $vitamine_b1=$document['vitamin-b1_100g'];
+        $vitamine_b9=$document['vitamin-b9_100g'];
+        $vitamine_b2=$document['vitamin-b2_100g'];
+        $amidons=$document['starch_100g'];
+        $fer=$document['iron_100g'];
+        $carbon_footprint=$document['carbon-footprint_100g'];
    }
    ?>
 <!DOCTYPE html>
