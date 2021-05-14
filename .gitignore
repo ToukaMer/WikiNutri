@@ -2,6 +2,8 @@ vendor
 .vs
 composer.json
 composer.lock
+
+# Dossier notebook
 PFE_extract_notebook/.ipynb_checkpoints
 PFE_extract_notebook/column.xlsx
 PFE_extract_notebook/en.openfoodfacts.org.products.csv
