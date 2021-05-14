@@ -5,7 +5,13 @@ $client = new MongoDB\Client(
     'mongodb+srv://Yosra:iaIqRPWxXN9AsFuF@cluster0.bbe6n.mongodb.net/PRODUITS_DB?retryWrites=true&w=majority');
 $db = $client->PRODUITS_DB;
 $collection = $client->$db->PRODUITS;
-$cursor=$collection->find( array( "product_name" => $_SESSION['search_name']));
+if(isset($_GET['product'])){
+    $name=$_GET['product'];
+}
+else{
+    $name=$_SESSION['search_name'];
+}
+$cursor=$collection->find( array( "product_name" => $name));
 foreach($cursor as $document) {
     $name=$document['product_name'];
     $image=$document['image_url'];

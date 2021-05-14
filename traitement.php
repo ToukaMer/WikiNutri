@@ -15,7 +15,7 @@ foreach($cursor as $document) {
 }
 if (isset($_POST['rapide'])) {
 	if ($i>1) {
-		header('Location: liste_produits.html');
+		header('Location: liste_produits.php');
 	}
 	elseif ($i==1) {
 		header('Location: fiche_produit.php');

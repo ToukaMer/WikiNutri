@@ -1,3 +1,15 @@
+<?php 
+require 'vendor/autoload.php';
+session_start();
+$search = $_SESSION["search_name"];
+$client = new MongoDB\Client(
+    'mongodb+srv://Yosra:iaIqRPWxXN9AsFuF@cluster0.bbe6n.mongodb.net/PRODUITS_DB?retryWrites=true&w=majority');
+$db = $client->PRODUITS_DB;
+$collection = $client->$db->PRODUITS;
+$search_value = $search;
+$regex = new MongoDB\BSON\Regex($search_value, 'i');
+$cursor=$collection->find( array( "product_name" => $regex));
+?>
 <!DOCTYPE html>
 
 <html lang="fr" xmlns="http://www.w3.org/1999/xhtml">
@@ -19,14 +31,12 @@
             <div class="row">
                 <h2>Voici le résultat de votre recherche &#128525;</h2>
                 <div class="product_list">
-                    <figure>
-                        <img src="images/tresor_cacahuete.jpg" alt="tresor_cacahuete">
-                        <figcaption>Kellogs Trésor</figcaption>
-                    </figure>
-                    <figure>
-                        <img src="images/tresor_cacahuete.jpg" alt="tresor_cacahuete">
-                        <figcaption>Kellogs Trésor</figcaption>
-                    </figure>
+                    <?php
+                    foreach($cursor as $document) {
+                        $name=$document['product_name'];
+                        $image=$document['image_url'];
+                        echo "<a href='fiche_produit.php?product=$name'><figure> <img src='$image' alt='$name'> <figcaption>$name</figcaption> </figure></a>";
+	                }?>
                 </div>
             </div>
             <div class="row">
