@@ -80,7 +80,6 @@ body {
   flex-wrap: wrap;
   padding: 0 4px;
   flex: 25%;
-  max-width: 25%;
 }
 
 .column_list{
@@ -123,7 +122,7 @@ img {
   vertical-align: middle;
 }
 
-.product_list figure:hover {
+.product_list a:hover {
     opacity :0.7;
 }
 
@@ -167,7 +166,7 @@ select {
   border-radius: 16px;
 }
 
-.row button[type=button]:hover {
+.row button:hover {
     opacity : 0.7;
 }
 

@@ -35,7 +35,7 @@ $cursor=$collection->find( array( "product_name" => $regex));
                     foreach($cursor as $document) {
                         $name=$document['product_name'];
                         $image=$document['image_url'];
-                        echo "<a href='fiche_produit.php?product=$name'><figure> <img src='$image' alt='$name'> <figcaption>$name</figcaption> </figure></a>";
+                        echo "<a href='fiche_produit.php?product=$name'><figure> <img src='$image' alt='$name' width='200' height='200'> <figcaption>$name</figcaption> </figure></a>";
 	                }?>
                 </div>
             </div>
