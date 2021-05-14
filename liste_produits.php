@@ -14,8 +14,8 @@ $filters += ["product_name"=>$regex];
 //$filters += ['energy-kcal_100g' => ['$lte' => '2500']];
 
 
-echo $search_value;
-echo $_POST['calories_num'];
+//echo $search_value;
+//echo $_POST['calories_num'];
 //echo $_POST['search_name'];
 
 
@@ -35,7 +35,7 @@ if(isset($_POST['calories_num'])) {
 
 $cursor=$collection->find($filters,$options);
 
-echo '<pre>'; print_r($filters); echo '</pre>';
+//echo '<pre>'; print_r($filters); echo '</pre>';
 
 
 ?>
