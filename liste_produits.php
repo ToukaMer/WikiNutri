@@ -47,6 +47,15 @@ if(isset($_GET['marque'])){
     $cursor=$collection->find($filters,$options);
     }
 
+if(isset($_GET['categorie'])){
+
+    $categorie_id=$_GET['categorie'];
+    $filters = [];
+    $options = [];
+    $regex = new MongoDB\BSON\Regex($categorie_id, 'i');
+    $filters += ["categories"=>$regex];
+    $cursor=$collection->find($filters,$options);
+    }
 
 //echo '<pre>'; print_r($filters); echo '</pre>';
 
