@@ -130,7 +130,7 @@ else{
                             <li><p>Marques : <?php $marques=explode(",",$marque);foreach($marques as $mark){ echo "<a href='liste_produits.php?marque=$mark'>$mark</a>"; } ?></p></li>
                             <li><p>Catégories : <?php $ncategories=explode (",",$categories);foreach($ncategories as $categ){ echo "<a href='liste_produits.php?categorie=$categ'>$categ</a>"; } ?></p></li>
                             <li><p>Labels : <?php $nlabels=explode (",",$labels);foreach($nlabels as $lab){echo "<a href='liste_produits.php?label=$lab'>$lab</a>"; } ?></p></li>
-                            <li><p>Liste des ingrédients : <?php echo $ingredients ?></p></li>
+                            <li><p>Liste des ingrédients : <?php $ningredients=explode(",",$ingredients);foreach($ningredients as $ingred){echo "<a href='liste_produits.php?ingredient=$ingred'>$ingred</a>";} ?></p></li>
                             <li><p>Liste des allergènes : <?php echo $allergenes ?></p></li>
                             <li><p>Contient des traces de : <?php echo $traces ?></p></li>
                             <li><p>Additifs : <?php echo $additifs ?></p></li>
