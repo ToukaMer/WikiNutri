@@ -123,7 +123,7 @@ else{
                 <div class="column2">
                     <div class="product_info">
                         <ul>
-                            <li><p>Nutri Score : <?php echo $nutriscore ?></p></li>
+                            <li><p>Nutri Score : <?php $nutriscore=$nutriscore;{echo "<a href='liste_produits.php?nutriscore=$nutriscore'>$nutriscore</a>";} ?></p></li>
                             <li><p>Nova Score : <?php echo $novascore ?></p></li>
                             <li><p>Poids Net : <?php echo $poids ?></p></li>
                             <li><p>Emballage : <?php echo $emballage ?></p></li>

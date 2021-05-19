@@ -67,6 +67,15 @@ if(isset($_GET['categorie'])){
     $cursor=$collection->find($filters,$options);
     }
 
+ if(isset($_GET['nutriscore'])){
+
+    $nutriscore_id=$_GET['nutriscore'];
+    $filters = [];
+    $options = [];
+    $filters += ["nutriscore_score"=>$nutriscore_id];
+    $cursor=$collection->find($filters,$options);
+    }
+
 //echo '<pre>'; print_r($filters); echo '</pre>';
 
 
