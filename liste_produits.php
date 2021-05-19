@@ -1,12 +1,14 @@
 <?php 
 require 'vendor/autoload.php';
 session_start();
-$_SESSION['search_val'] = $_POST['search_name'];
-$search_value = $_SESSION['search_val'];
 $client = new MongoDB\Client(
     'mongodb+srv://Yosra:iaIqRPWxXN9AsFuF@cluster0.bbe6n.mongodb.net/PRODUITS_DB?retryWrites=true&w=majority');
 $db = $client->PRODUITS_DB;
 $collection = $client->$db->PRODUITS;
+if(isset($_POST['search_name'])) {
+$_SESSION['search_val'] = $_POST['search_name'];
+$search_value = $_SESSION['search_val'];
+
 $filters = [];
 $options = [];
 $regex = new MongoDB\BSON\Regex($search_value, 'i');
@@ -32,8 +34,19 @@ if(isset($_POST['calories_num'])) {
 
 }
 
-
 $cursor=$collection->find($filters,$options);
+}
+
+if(isset($_GET['marque'])){
+
+    $marque_id=$_GET['marque'];
+    $filters = [];
+    $options = [];
+    $regex = new MongoDB\BSON\Regex($marque_id, 'i');
+    $filters += ["brands"=>$regex];
+    $cursor=$collection->find($filters,$options);
+    }
+
 
 //echo '<pre>'; print_r($filters); echo '</pre>';
 

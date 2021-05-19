@@ -127,7 +127,7 @@ else{
                             <li><p>Nova Score : <?php echo $novascore ?></p></li>
                             <li><p>Poids Net : <?php echo $poids ?></p></li>
                             <li><p>Emballage : <?php echo $emballage ?></p></li>
-                            <li><p>Marques : <?php echo $marque ?></p></li>
+                            <li><p>Marques : <?php $marques=explode(",",$marque);foreach($marques as $mark){ echo "<a href='liste_produits.php?marque=$mark'>$mark</a>"; } ?></p></li>
                             <li><p>Catégories : <?php echo $categories ?></p></li>
                             <li><p>Labels : <?php echo $labels ?></p></li>
                             <li><p>Liste des ingrédients : <?php echo $ingredients ?></p></li>
