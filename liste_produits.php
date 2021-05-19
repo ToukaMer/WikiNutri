@@ -78,11 +78,21 @@ if(isset($_GET['categorie'])){
 
  if(isset($_GET['ingredient'])){
 
-    $label_id=$_GET['ingredient'];
+    $ingredient_id=$_GET['ingredient'];
     $filters = [];
     $options = [];
-    $regex = new MongoDB\BSON\Regex($label_id, 'i');
+    $regex = new MongoDB\BSON\Regex($ingredient_id, 'i');
     $filters += ["ingredients_text"=>$regex];
+    $cursor=$collection->find($filters,$options);
+    }
+
+ if(isset($_GET['allergene'])){
+
+    $allergene_id=$_GET['allergene'];
+    $filters = [];
+    $options = [];
+    $regex = new MongoDB\BSON\Regex($allergene_id, 'i');
+    $filters += ["allergens"=>$regex];
     $cursor=$collection->find($filters,$options);
     }
 
