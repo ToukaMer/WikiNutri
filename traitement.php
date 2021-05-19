@@ -1,10 +1,8 @@
 <?php 
 require 'vendor/autoload.php';
 session_start();
-if(isset($_POST['search_name']))
+if(isset($_POST['search_name'])){
     $_SESSION['search_name'] = $_POST['search_name'];
-else{
-    $_SESSION['search_name']="";
 }
 $client = new MongoDB\Client(
     'mongodb+srv://Yosra:iaIqRPWxXN9AsFuF@cluster0.bbe6n.mongodb.net/PRODUITS_DB?retryWrites=true&w=majority');
