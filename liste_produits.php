@@ -57,6 +57,16 @@ if(isset($_GET['categorie'])){
     $cursor=$collection->find($filters,$options);
     }
 
+ if(isset($_GET['label'])){
+
+    $label_id=$_GET['label'];
+    $filters = [];
+    $options = [];
+    $regex = new MongoDB\BSON\Regex($label_id, 'i');
+    $filters += ["labels"=>$regex];
+    $cursor=$collection->find($filters,$options);
+    }
+
 //echo '<pre>'; print_r($filters); echo '</pre>';
 
 
