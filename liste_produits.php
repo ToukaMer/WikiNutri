@@ -5,99 +5,84 @@ $client = new MongoDB\Client(
     'mongodb+srv://Yosra:iaIqRPWxXN9AsFuF@cluster0.bbe6n.mongodb.net/PRODUITS_DB?retryWrites=true&w=majority');
 $db = $client->PRODUITS_DB;
 $collection = $client->$db->PRODUITS;
-if(isset($_POST['search_name'])) {
-$_SESSION['search_val'] = $_POST['search_name'];
-$search_value = $_SESSION['search_val'];
-
 $filters = [];
 $options = [];
-$regex = new MongoDB\BSON\Regex($search_value, 'i');
-$filters += ["product_name"=>$regex];
-//$filters += ['energy-kcal_100g' => ['$lte' => '2500']];
 
+if(isset($_GET['marque'])){
 
-//echo $search_value;
-//echo $_POST['calories_num'];
-//echo $_POST['search_name'];
+    $marque_id=$_GET['marque'];
+    $regex = new MongoDB\BSON\Regex($marque_id, 'i');
+    $filters += ["brands"=>$regex];
+    //$cursor=$collection->find($filters,$options);
+}
 
+elseif(isset($_GET['categorie'])){
 
-if(isset($_POST['calories_num'])) {
-    if($_POST['calories'] == "egal") {
-        $filters += ['energy-kcal_100g' => ['$eq' => $_POST['calories_num']]];
+    $categorie_id=$_GET['categorie'];
+    $regex = new MongoDB\BSON\Regex($categorie_id, 'i');
+    $filters += ["categories"=>$regex];
+    //$cursor=$collection->find($filters,$options);
+}
+
+ elseif(isset($_GET['label'])){
+
+    $label_id=$_GET['label'];
+    $regex = new MongoDB\BSON\Regex($label_id, 'i');
+    $filters += ["labels"=>$regex];
+    //$cursor=$collection->find($filters,$options);
+}
+
+ elseif(isset($_GET['nutriscore'])){
+
+    $nutriscore_id=$_GET['nutriscore'];
+    $filters += ["nutriscore_score"=>$nutriscore_id];
+    //$cursor=$collection->find($filters,$options);
+}
+
+ elseif(isset($_GET['ingredient'])){
+
+    $ingredient_id=$_GET['ingredient'];
+    $regex = new MongoDB\BSON\Regex($ingredient_id, 'i');
+    $filters += ["ingredients_text"=>$regex];
+    //$cursor=$collection->find($filters,$options);
+}
+
+ elseif(isset($_GET['allergene'])){
+
+    $allergene_id=$_GET['allergene'];
+    $regex = new MongoDB\BSON\Regex($allergene_id, 'i');
+    $filters += ["allergens"=>$regex];
+    //$cursor=$collection->find($filters,$options);
+}
+
+else{
+    if(isset($_SESSION['search_name'])){
+        $search_value = $_SESSION['search_name'];
+        $regex = new MongoDB\BSON\Regex($search_value, 'i');
+        $filters += ["product_name"=>$regex];
     }
-    elseif ($_POST['calories'] == "sup"){
-        $filters += ['energy-kcal_100g' => ['$gte' => $_POST['calories_num']]];
-    }
-    elseif($_POST['calories'] == "inf") {
-        $filters += ['energy-kcal_100g' => ['$lte' => $_POST['calories_num']]];
+    //$filters += ['energy-kcal_100g' => ['$lte' => '2500']];
+    //echo $search_value;
+    //echo $_SESSION['calories_num'];
+    //echo $_SESSION['search_name'];
+    if(isset($_SESSION['calories_num'])) {
+        if($_SESSION['calories'] == "egal") {
+            $filters += ['energy-kcal_100g' => ['$eq' => $_SESSION['calories_num']]];
+        }
+        elseif ($_SESSION['calories'] == "sup"){
+            $filters += ['energy-kcal_100g' => ['$gte' => $_SESSION['calories_num']]];
+        }
+        elseif($_SESSION['calories'] == "inf") {
+            $filters += ['energy-kcal_100g' => ['$lte' => $_SESSION['calories_num']]];
+        }
+
     }
 
 }
 
 $cursor=$collection->find($filters,$options);
-}
-
-if(isset($_GET['marque'])){
-
-    $marque_id=$_GET['marque'];
-    $filters = [];
-    $options = [];
-    $regex = new MongoDB\BSON\Regex($marque_id, 'i');
-    $filters += ["brands"=>$regex];
-    $cursor=$collection->find($filters,$options);
-    }
-
-if(isset($_GET['categorie'])){
-
-    $categorie_id=$_GET['categorie'];
-    $filters = [];
-    $options = [];
-    $regex = new MongoDB\BSON\Regex($categorie_id, 'i');
-    $filters += ["categories"=>$regex];
-    $cursor=$collection->find($filters,$options);
-    }
-
- if(isset($_GET['label'])){
-
-    $label_id=$_GET['label'];
-    $filters = [];
-    $options = [];
-    $regex = new MongoDB\BSON\Regex($label_id, 'i');
-    $filters += ["labels"=>$regex];
-    $cursor=$collection->find($filters,$options);
-    }
-
- if(isset($_GET['nutriscore'])){
-
-    $nutriscore_id=$_GET['nutriscore'];
-    $filters = [];
-    $options = [];
-    $filters += ["nutriscore_score"=>$nutriscore_id];
-    $cursor=$collection->find($filters,$options);
-    }
-
- if(isset($_GET['ingredient'])){
-
-    $ingredient_id=$_GET['ingredient'];
-    $filters = [];
-    $options = [];
-    $regex = new MongoDB\BSON\Regex($ingredient_id, 'i');
-    $filters += ["ingredients_text"=>$regex];
-    $cursor=$collection->find($filters,$options);
-    }
-
- if(isset($_GET['allergene'])){
-
-    $allergene_id=$_GET['allergene'];
-    $filters = [];
-    $options = [];
-    $regex = new MongoDB\BSON\Regex($allergene_id, 'i');
-    $filters += ["allergens"=>$regex];
-    $cursor=$collection->find($filters,$options);
-    }
 
 //echo '<pre>'; print_r($filters); echo '</pre>';
-
 
 ?>
 <!DOCTYPE html>
