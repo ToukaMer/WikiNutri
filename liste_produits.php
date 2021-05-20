@@ -107,14 +107,17 @@ $cursor=$collection->find($filters,$options);
             <div class="row">
                 <h2>Voici le résultat de votre recherche &#128525;</h2>
                 <div class="product_list">
+                    <form method="post" action="comparaison_produits.php">
+                    <button type='submit' name='comparer'>Comparer</button>
                     <?php
                     foreach($cursor as $document) {
                         $name=$document['product_name'];
                         $image=$document['image_url'];
                         $code=$document['code'];
-                        echo "<a href='fiche_produit.php?product=$code'><figure> <img src='$image' alt='$name' width='200' height='200'> <figcaption>$name</figcaption> </figure></a>";
+                        echo "<figure><a href='fiche_produit.php?product=$code'><img src='$image' alt='$name' width='200' height='200'><figcaption>$name</figcaption></a><input type='checkbox' name='compare[]' value=$code></figure>";
 	                }
                     ?>
+                    </form>
                 </div>
             </div>
             <div class="row">

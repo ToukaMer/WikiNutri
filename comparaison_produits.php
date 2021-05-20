@@ -5,9 +5,23 @@ $client = new MongoDB\Client(
     'mongodb+srv://Yosra:iaIqRPWxXN9AsFuF@cluster0.bbe6n.mongodb.net/PRODUITS_DB?retryWrites=true&w=majority');
 $db = $client->PRODUITS_DB;
 $collection = $client->$db->PRODUITS;
-$produit1=$collection->findOne(['code'=> intval('1')]);
-$produit2=$collection->findOne(['code'=> intval('3')]);
-
+$p=[];
+$compares = $_POST['compare'];
+if(empty($compares)) 
+  {
+    echo("Vous n'avez pas sélectionné de produits");
+  } 
+  else
+  {
+    $N = count($compares);
+    for($i=0; $i < $N; $i++)
+    {
+      $p[$i]=$compares[$i];
+      echo $i;
+    }
+ }
+$produit1=$collection->findOne(['code'=> intval($p[0])]);
+$produit2=$collection->findOne(['code'=> intval($p[1])]);
 ?>
 <!DOCTYPE html>
 
@@ -38,7 +52,7 @@ $produit2=$collection->findOne(['code'=> intval('3')]);
                 </form>
             </div>
             <div class="row">
-                <h2>Voici le résultat de votre recherche &#128525;</h2>
+                <h2>Comparatif &#128525;</h2>
                 
                     <table>
                         <thead>
@@ -61,8 +75,8 @@ $produit2=$collection->findOne(['code'=> intval('3')]);
                         <tbody>
                             <tr>
                                 <td>Nutri Score</td>
-                                <td><?php echo $produit1['nutriscore_grade'] ?></td>
-                                <td><?php echo $produit2['nutriscore_grade'] ?></td>
+                                <td><?php echo strtoupper($produit1['nutriscore_grade']); ?></td>
+                                <td><?php echo strtoupper($produit2['nutriscore_grade']); ?></td>
                             </tr>
                             <tr>
                                 <td>Nova Score</td>
