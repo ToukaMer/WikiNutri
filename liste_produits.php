@@ -35,7 +35,7 @@ elseif(isset($_GET['categorie'])){
  elseif(isset($_GET['nutriscore'])){
 
     $nutriscore_id=$_GET['nutriscore'];
-    $filters += ["nutriscore_score"=>$nutriscore_id];
+    $filters += ["nutriscore_grade"=>$nutriscore_id];
     //$cursor=$collection->find($filters,$options);
 }
 

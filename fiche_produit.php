@@ -10,7 +10,7 @@ if(isset($_GET['product'])){
     $document = $collection->findOne(['code' => intval($product_id)]);
     $name=$document['product_name'];
     $image=$document['image_url'];
-    $nutriscore=$document['nutriscore_score'];
+    $nutriscore=$document['nutriscore_grade'];
     $novascore=$document['nova_group'];
     $poids=$document['quantity'];
     $emballage=$document['packaging'];
@@ -49,7 +49,7 @@ else{
     foreach($cursor as $document) {
         $name=$document['product_name'];
         $image=$document['image_url'];
-        $nutriscore=$document['nutriscore_score'];
+        $nutriscore=$document['nutriscore_grade'];
         $novascore=$document['nova_group'];
         $poids=$document['quantity'];
         $emballage=$document['packaging'];
