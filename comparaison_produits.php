@@ -5,6 +5,9 @@ $client = new MongoDB\Client(
     'mongodb+srv://Yosra:iaIqRPWxXN9AsFuF@cluster0.bbe6n.mongodb.net/PRODUITS_DB?retryWrites=true&w=majority');
 $db = $client->PRODUITS_DB;
 $collection = $client->$db->PRODUITS;
+$produit1=$collection->findOne(['code'=> intval('1')]);
+$produit2=$collection->findOne(['code'=> intval('3')]);
+
 ?>
 <!DOCTYPE html>
 
@@ -43,14 +46,14 @@ $collection = $client->$db->PRODUITS;
                                 <th>Info</th>
                                 <th>
                                     <figure>
-                                        <img src="images/tresor_cacahuete.jpg" alt="image produit1" width="250" height="250">
-                                        <figcaption>Produit1</figcaption>
+                                        <img src="<?php echo $produit1['image_url'] ?>" alt="image produit1" width="250" height="250">
+                                        <figcaption><?php echo $produit1['product_name'] ?></figcaption>
                                     </figure>
                                 </th>
                                 <th>
                                     <figure>
-                                        <img src="images/tresor_cacahuete.jpg" alt="image produit2" width="250" height="250">
-                                        <figcaption>Produit2</figcaption>
+                                        <img src="<?php echo $produit2['image_url'] ?>" alt="image produit2" width="250" height="250">
+                                        <figcaption><?php echo $produit2['product_name'] ?></figcaption>
                                     </figure>
                                 </th>
                             </tr>
@@ -58,153 +61,153 @@ $collection = $client->$db->PRODUITS;
                         <tbody>
                             <tr>
                                 <td>Nutri Score</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['nutriscore_grade'] ?></td>
+                                <td><?php echo $produit2['nutriscore_grade'] ?></td>
                             </tr>
                             <tr>
                                 <td>Nova Score</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['nova_group']?></td>
+                                <td><?php echo $produit2['nova_group']?></td>
                             </tr>
                             <tr>
                                 <td>Poids Net</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['quantity']?></td>
+                                <td><?php echo $produit2['quantity']?></td>
                             </tr>
                             <tr>
                                 <td>Emballage</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['packaging']?></td>
+                                <td><?php echo $produit2['packaging']?></td>
                             </tr>
                             <tr>
                                 <td>Marques</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['brands']?></td>
+                                <td><?php echo $produit2['brands']?></td>
                             </tr>
                             <tr>
                                 <td>Labels</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['labels']?></td>
+                                <td><?php echo $produit2['labels']?></td>
                             </tr>
                             <tr>
                                 <td>Ingrédients</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['ingredients_text']?></td>
+                                <td><?php echo $produit2['ingredients_text']?></td>
                             </tr>
                             <tr>
                                 <td>Allergènes</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['allergens']?></td>
+                                <td><?php echo $produit2['allergens']?></td>
                             </tr>
                             <tr>
                                 <td>Traces</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['traces']?></td>
+                                <td><?php echo $produit2['traces']?></td>
                             </tr>
                             <tr>
                                 <td>Additifs</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['additives_en']?></td>
+                                <td><?php echo $produit2['additives_en']?></td>
                             </tr>
                             <tr>
                                 <td>Éco Score</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['ecoscore_grade_fr']?></td>
+                                <td><?php echo $produit2['ecoscore_grade_fr']?></td>
                             </tr>
                             <tr>
                                 <td>Portion</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['serving_quantity']?></td>
+                                <td><?php echo $produit2['serving_quantity']?></td>
                             </tr>
                             <tr>
                                 <td>Energie</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['energy_100g']?></td>
+                                <td><?php echo $produit2['energy_100g']?></td>
                             </tr>
                             <tr>
                                 <td>Matières grasses</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['fat_100g']?></td>
+                                <td><?php echo $produit2['fat_100g']?></td>
                             </tr>
                             <tr>
                                 <td>Acides gras saturés</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['saturated-fat_100g']?></td>
+                                <td><?php echo $produit2['saturated-fat_100g']?></td>
                             </tr>
                             <tr>
                                 <td>Glucides</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['carbohydrates_100g']?></td>
+                                <td><?php echo $produit2['carbohydrates_100g']?></td>
                             </tr>
                             <tr>
                                 <td>Sucres</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['sugars_100g']?></td>
+                                <td><?php echo $produit2['sugars_100g']?></td>
                             </tr>
                             <tr>
                                 <td>Fibres alimentaires</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['fiber_100g']?></td>
+                                <td><?php echo $produit2['fiber_100g']?></td>
                             </tr>
                             <tr>
                                 <td>Protéines</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['proteins_100g']?></td>
+                                <td><?php echo $produit2['proteins_100g']?></td>
                             </tr>
                             <tr>
                                 <td>Sel</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['salt_100g']?></td>
+                                <td><?php echo $produit2['salt_100g']?></td>
                             </tr>
                             <tr>
                                 <td>Alcool</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['alcohol_100g']?></td>
+                                <td><?php echo $produit2['alcohol_100g']?></td>
                             </tr>
                             <tr>
                                 <td>Calcium</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['calcium_100g']?></td>
+                                <td><?php echo $produit2['calcium_100g']?></td>
                             </tr>
                             <tr>
                                 <td>Vitamine-b6-pyridoxine</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['vitamin-b6_100g']?></td>
+                                <td><?php echo $produit2['vitamin-b6_100g']?></td>
                             </tr>
                             <tr>
                                 <td>Vitamine-b12-cobalamine</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['vitamin-b12_100g']?></td>
+                                <td><?php echo $produit2['vitamin-b12_100g']?></td>
                             </tr>
                             <tr>
                                 <td>Vitamine-b1-thiamine</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['vitamin-b1_100g']?></td>
+                                <td><?php echo $produit2['vitamin-b1_100g']?></td>
                             </tr>
                             <tr>
                                 <td>Vitamine-b9-acide-folique</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['vitamin-b9_100g']?></td>
+                                <td><?php echo $produit2['vitamin-b9_100g']?></td>
                             </tr>
                             <tr>
                                 <td>Vitamine-b2-riboflavine</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['vitamin-b2_100g']?></td>
+                                <td><?php echo $produit2['vitamin-b2_100g']?></td>
                             </tr>
                             <tr>
                                 <td>Amidons</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['starch_100g']?></td>
+                                <td><?php echo $produit2['starch_100g']?></td>
                             </tr>
                             <tr>
                                 <td>Fer</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['iron_100g']?></td>
+                                <td><?php echo $produit2['iron_100g']?></td>
                             </tr>
                             <tr>
                                 <td>Empreinte de carbon</td>
-                                <td>info1</td>
-                                <td>info2</td>
+                                <td><?php echo $produit1['carbon-footprint_100g']?></td>
+                                <td><?php echo $produit2['carbon-footprint_100g']?></td>
                             </tr>
                         </tbody>
                     </table>
