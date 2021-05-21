@@ -17,7 +17,6 @@ if(empty($compares))
     for($i=0; $i < $N; $i++)
     {
       $p[$i]=$compares[$i];
-      echo $i;
     }
  }
 $produit1=$collection->findOne(['code'=> intval($p[0])]);

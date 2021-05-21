@@ -74,12 +74,13 @@ body {
  text-align : center;
 }
 
-.product_list{
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  flex-wrap: wrap;
-  padding: 0 4px;
-  flex: 25%;
+.checkboxes {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    vertical-align: middle;
+    padding: 0 4px;
+    flex: 25%;
+    flex-wrap: wrap;
 }
 
 .column_list{
@@ -114,16 +115,28 @@ img {
 }
 
 .product_list img {
-  border: 1px solid #FFFFFF;
-  border-radius: 4px;
-  padding: 5px;
-  width: 180px;
-  margin-top: 8px;
-  vertical-align: middle;
+    border: 1px solid #FFFFFF;
+    border-radius: 4px;
+    padding: 5px;
+    width: 180px;
+    margin-top: 8px;
+    vertical-align: middle;
 }
 
 .product_list a:hover {
     opacity :0.7;
+}
+
+.row input[type=checkbox] {
+    vertical-align: middle;
+}
+
+.row figure {
+    vertical-align: middle;
+}
+
+.row figcaption {
+    vertical-align: middle;
 }
 
 .row input[type=search] {
