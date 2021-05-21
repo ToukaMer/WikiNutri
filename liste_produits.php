@@ -91,6 +91,8 @@ $cursor=$collection->find($filters,$options);
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="jsfunctions.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Liste Produits</title>
 </head>
@@ -121,6 +123,7 @@ $cursor=$collection->find($filters,$options);
                     ?>
                     </div>
                     </form>
+                    <button type='button' name='afficherplus'>Afficher plus</button>
                 </div>
             </div>
             <div class="row">
