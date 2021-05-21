@@ -108,10 +108,10 @@ $cursor=$collection->find($filters,$options);
         <div class="middle">
             <div class="row">
                 <h2>Voici le résultat de votre recherche &#128525;</h2>
-                <h3>Choisissez deux produit en cochant les checkboxes correspondant pour les comparer</h3>
+                <h3>Choisissez deux produit en cochant les checkboxes correspondants pour les comparer</h3>
                 <div class="product_list">
                     <form method="post" action="comparaison_produits.php">
-                    <button type='submit' name='comparer'>Comparer</button>
+                    <button type="submit" id ="comparer" name="comparer" disabled>Comparer</button>
                     <div class="checkboxes">
                     <?php
                     foreach($cursor as $document) {
@@ -171,7 +171,11 @@ $cursor=$collection->find($filters,$options);
                 for (i = 0; i< ckName.length; i++) {
                 if(ckName[i].checked === false)
                     ckName[i].disabled = true;
+                    document.getElementById("comparer").disabled = false;
                 }
+            }
+            if(j !== 2){
+                document.getElementById("comparer").disabled = true;
             }
         }
     </script>
