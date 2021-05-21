@@ -83,6 +83,13 @@ else{
         $carbon_footprint=$document['carbon-footprint_100g'];
    }
 }
+
+function multipleexplode ($delimiters,$string) {
+  $phase = str_replace($delimiters, $delimiters[0], $string);
+  $processed = explode($delimiters[0], $phase);
+  return  $processed;
+}
+
    ?>
 <!DOCTYPE html>
 
@@ -127,11 +134,11 @@ else{
                             <li><p>Nova Score : <?php echo $novascore ?></p></li>
                             <li><p>Poids Net : <?php echo $poids ?></p></li>
                             <li><p>Emballage : <?php echo $emballage ?></p></li>
-                            <li><p>Marques : <?php $marques=explode(",",$marque);foreach($marques as $mark){ echo "<a href='liste_produits.php?marque=$mark'>$mark</a>"; } ?></p></li>
-                            <li><p>Catégories : <?php $ncategories=explode (",",$categories);foreach($ncategories as $categ){ echo "<a href='liste_produits.php?categorie=$categ'>$categ</a>"; } ?></p></li>
-                            <li><p>Labels : <?php $nlabels=explode (",",$labels);foreach($nlabels as $lab){echo "<a href='liste_produits.php?label=$lab'>$lab</a>"; } ?></p></li>
-                            <li><p>Liste des ingrédients : <?php $ningredients=explode(",",$ingredients);foreach($ningredients as $ingred){echo "<a href='liste_produits.php?ingredient=$ingred'>$ingred</a>";} ?></p></li>
-                            <li><p>Liste des allergènes : <?php $nallergenes = explode(",",$allergenes); foreach($nallergenes as $allerg){echo  "<a href='liste_produits.php?allergene=$allerg'>$allerg</a>";} ?></p></li>
+                            <li><p>Marques : <?php $marques=multipleexplode(array(",",".","|",":",")","("),$marque);foreach($marques as $mark){ echo "<a href='liste_produits.php?marque=$mark'>$mark</a>"; } ?></p></li>
+                            <li><p>Catégories : <?php $ncategories=multipleexplode(array(",",".","|",":",")","("),$categories);foreach($ncategories as $categ){ echo "<a href='liste_produits.php?categorie=$categ'>$categ</a>"; } ?></p></li>
+                            <li><p>Labels : <?php $nlabels=multipleexplode(array(",",".","|",":",")","("),$labels);foreach($nlabels as $lab){echo "<a href='liste_produits.php?label=$lab'>$lab</a>"; } ?></p></li>
+                            <li><p>Liste des ingrédients : <?php $ningredients=multipleexplode(array(",",".","|",":",")","("),$ingredients);foreach($ningredients as $ingred){echo "<a href='liste_produits.php?ingredient=$ingred'>$ingred</a>";} ?></p></li>
+                            <li><p>Liste des allergènes : <?php $nallergenes = multipleexplode(array(",",".","|",":",")","("),$allergenes); foreach($nallergenes as $allerg){echo  "<a href='liste_produits.php?allergene=$allerg'>$allerg</a>";} ?></p></li>
                             <li><p>Contient des traces de : <?php echo $traces ?></p></li>
                             <li><p>Additifs : <?php echo $additifs ?></p></li>
                             <li><p>Éco score : <?php echo $ecoscore ?></p></li>
