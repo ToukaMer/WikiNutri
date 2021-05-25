@@ -21,6 +21,12 @@ if(empty($compares))
  }
 $produit1=$collection->findOne(['code'=> intval($p[0])]);
 $produit2=$collection->findOne(['code'=> intval($p[1])]);
+$produit1nutri=$produit1['nutriscore_grade'];
+$produit2nutri=$produit2['nutriscore_grade'];
+$produit1nova=$produit1['nova_group'];
+$produit2nova=$produit2['nova_group'];
+$produit1eco=$produit1['ecoscore_grade_fr'];
+$produit2eco=$produit2['ecoscore_grade_fr'];
 ?>
 <!DOCTYPE html>
 
@@ -74,13 +80,23 @@ $produit2=$collection->findOne(['code'=> intval($p[1])]);
                         <tbody>
                             <tr>
                                 <td>Nutri Score</td>
-                                <td><?php echo strtoupper($produit1['nutriscore_grade']); ?></td>
-                                <td><?php echo strtoupper($produit2['nutriscore_grade']); ?></td>
+                                <td><?php echo "<img src='images/nutri_score_$produit1nutri.png' alt='$produit1nutri' width='140' height='90'>"; ?></td>
+                                <td><?php echo "<img src='images/nutri_score_$produit2nutri.png' alt='$produit2nutri' width='140' height='90'>"; ?></td>
                             </tr>
                             <tr>
                                 <td>Nova Score</td>
-                                <td><?php echo $produit1['nova_group']?></td>
-                                <td><?php echo $produit2['nova_group']?></td>
+                                <td><?php echo "<img src='images/nova-group-$produit1nova.svg' alt='$produit1nova' width='50' height='80'>"; ?></td>
+                                <td><?php echo "<img src='images/nova-group-$produit2nova.svg' alt='$produit2nova' width='50' height='80'>"; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Éco Score</td>
+                                <td><?php echo "<img src='images/ecoscore-$produit1eco.svg' alt='$produit1eco' width='100' height='70'>"; ?></td>
+                                <td><?php echo "<img src='images/ecoscore-$produit2eco.svg' alt='$produit2eco' width='100' height='70'>"; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Emballage</td>
+                                <td><?php echo $produit1['packaging']?></td>
+                                <td><?php echo $produit2['packaging']?></td>
                             </tr>
                             <tr>
                                 <td>Poids Net</td>
@@ -88,9 +104,9 @@ $produit2=$collection->findOne(['code'=> intval($p[1])]);
                                 <td><?php echo $produit2['quantity']?></td>
                             </tr>
                             <tr>
-                                <td>Emballage</td>
-                                <td><?php echo $produit1['packaging']?></td>
-                                <td><?php echo $produit2['packaging']?></td>
+                                <td>Portion</td>
+                                <td><?php echo $produit1['serving_quantity']?></td>
+                                <td><?php echo $produit2['serving_quantity']?></td>
                             </tr>
                             <tr>
                                 <td>Marques</td>
@@ -121,16 +137,6 @@ $produit2=$collection->findOne(['code'=> intval($p[1])]);
                                 <td>Additifs</td>
                                 <td><?php echo $produit1['additives_en']?></td>
                                 <td><?php echo $produit2['additives_en']?></td>
-                            </tr>
-                            <tr>
-                                <td>Éco Score</td>
-                                <td><?php echo $produit1['ecoscore_grade_fr']?></td>
-                                <td><?php echo $produit2['ecoscore_grade_fr']?></td>
-                            </tr>
-                            <tr>
-                                <td>Portion</td>
-                                <td><?php echo $produit1['serving_quantity']?></td>
-                                <td><?php echo $produit2['serving_quantity']?></td>
                             </tr>
                             <tr>
                                 <td>Energie</td>
