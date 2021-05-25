@@ -54,6 +54,15 @@ elseif (isset($_POST['submit_avancee'])) {
 	
     }
 
+		if(isset($_POST['search_marque'])) {
+        if($_POST['search_marque'] != " ") {
+			$search_value = $_POST['search_marque'];
+			$regex = new MongoDB\BSON\Regex($search_value, 'i');
+			$filters += ["brands"=>$regex];
+        }
+		$_SESSION['search_marque'] = $_POST['search_marque'];
+	
+    }
 }
 
 $cursor=$collection->find($filters,$options);
