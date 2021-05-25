@@ -132,20 +132,20 @@ function multipleexplode ($delimiters,$string) {
                 <div class="column2">
                     <div class="product_info">
                         <ul>
-                            <li><p>Nutri Score : <?php $nutriscore=$nutriscore;{echo "<a href='liste_produits.php?nutriscore=$nutriscore'>$nutriscore</a>";} ?></p></li>
-                            <li><p>Nova Score : <?php echo $novascore ?></p></li>
-                            <li><p>Poids Net : <?php echo $poids ?></p></li>
-                            <li><p>Emballage : <?php echo $emballage ?></p></li>
-                            <li><p>Marques : <?php $marques=multipleexplode(array(",",".","|",":",")","("),$marque);foreach($marques as $mark){ echo "<a href='liste_produits.php?marque=$mark'>$mark</a>"; } ?></p></li>
-                            <li><p>Catégories : <?php $ncategories=multipleexplode(array(",",".","|",":",")","("),$categories);foreach($ncategories as $categ){ echo "<a href='liste_produits.php?categorie=$categ'>$categ</a>"; } ?></p></li>
-                            <li><p>Labels : <?php $nlabels=multipleexplode(array(",",".","|",":",")","("),$labels);foreach($nlabels as $lab){echo "<a href='liste_produits.php?label=$lab'>$lab</a>"; } ?></p></li>
-                            <li><p>Liste des ingrédients : <?php $ningredients=multipleexplode(array(",",".","|",":",")","("),$ingredients);foreach($ningredients as $ingred){echo "<a href='liste_produits.php?ingredient=$ingred'>$ingred</a>";} ?></p></li>
-                            <li><p>Liste des allergènes : <?php $nallergenes = multipleexplode(array(",",".","|",":",")","("),$allergenes); foreach($nallergenes as $allerg){echo  "<a href='liste_produits.php?allergene=$allerg'>$allerg</a>";} ?></p></li>
-                            <li><p>Contient des traces de : <?php echo $traces ?></p></li>
-                            <li><p>Additifs : <?php echo $additifs ?></p></li>
-                            <li><p>Éco score : <?php echo $ecoscore ?></p></li>
-                            <li><p>Éco grade : <?php echo $ecoscore_g ?></p></li>
-                            <li><p>Portion : <?php echo $portion ?></p></li>
+                            <?php if(!empty($nutriscore)) {echo "<li><p>Nutri Score : <a href='liste_produits.php?nutriscore=$nutriscore'>"; echo strtoupper($nutriscore); echo "</a></p></li>";} ?>
+                            <?php if(!empty($novascore)) {echo "<li><p>Nova Score : "; echo $novascore; echo "</p></li>";} ?>
+                            <?php if(!empty($ecoscore)) {echo "<li><p>Éco score : "; echo $ecoscore;  echo "</p></li>";} ?>
+                            <?php if(!empty($ecoscore_g)) {echo "<li><p>Éco grade : "; echo strtoupper($ecoscore_g); echo "</p></li>";} ?>
+                            <?php if(!empty($emballage)) {echo "<li><p>Emballage : "; echo $emballage; "</p></li>";} ?>
+                            <?php if(!empty($poids)) {echo "<li><p>Poids Net : "; echo $poids; echo "</p></li>";} ?>
+                            <?php if(!empty($portion)) {echo "<li><p>Portion : "; echo $portion; echo "</p></li>";} ?>
+                            <?php if(!empty($marque)) {echo "<li><p>Marques : "; $marques=multipleexplode(array(",",".","|",":",")","("),$marque);foreach($marques as $mark){ echo "<a href='liste_produits.php?marque=$mark'>$mark</a>";} echo "</p></li>";} ?>
+                            <?php if(!empty($categories)) {echo "<li><p>Catégories : "; $ncategories=multipleexplode(array(",",".","|",":",")","("),$categories);foreach($ncategories as $categ){ echo "<a href='liste_produits.php?categorie=$categ'>$categ</a>";} echo "</p></li>";} ?>
+                            <?php if(!empty($labels)) {echo "<li><p>Labels : "; $nlabels=multipleexplode(array(",",".","|",":",")","("),$labels);foreach($nlabels as $lab){echo "<a href='liste_produits.php?label=$lab'>$lab</a>";} echo "</p></li>";} ?>
+                            <?php if(!empty($ingredients)) {echo "<li><p>Liste des ingrédients : "; $ningredients=multipleexplode(array(",",".","|",":",")","("),$ingredients);foreach($ningredients as $ingred){echo "<a href='liste_produits.php?ingredient=$ingred'>$ingred</a>";} echo "</p></li>";} ?>
+                            <?php if(!empty($allergenes)) {echo "<li><p>Liste des allergènes : "; $nallergenes = multipleexplode(array(",",".","|",":",")","("),$allergenes); foreach($nallergenes as $allerg){echo  "<a href='liste_produits.php?allergene=$allerg'>$allerg</a>";} echo "</p></li>";} ?>
+                            <?php if(!empty($traces)) {echo "<li><p>Contient des traces de : "; echo $traces; echo "</p></li>";} ?>
+                            <?php if(!empty($additifs)) {echo "<li><p>Additifs : "; echo $additifs; echo "</p></li>";} ?>
                             <li><p>Tableau des apports nutritionnels :</p></li>
                             <li>
                                 <table>
@@ -156,78 +156,78 @@ function multipleexplode ($delimiters,$string) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                        <?php if(!empty($energie)) {echo "<tr>
                                             <td>Energie</td>
-                                            <td><?php echo $energie ?></td>
-                                        </tr>
-                                        <tr>
+                                            <td>"; echo $energie; echo "</td>
+                                        </tr>";}?>
+                                        <?php if(!empty($gras)) {echo "<tr>
                                             <td>Matières grasses</td>
-                                            <td><?php echo $gras ?></td>
-                                        </tr>
-                                        <tr>
+                                            <td>"; echo $gras; echo "</td>
+                                        </tr>";} ?>
+                                        <?php if(!empty($acides)) {echo "<tr>
                                             <td>Acides gras saturés</td>
-                                            <td><?php echo $acides ?></td>
-                                        </tr>
-                                        <tr>
+                                            <td>"; echo $acides; echo "</td>
+                                        </tr>";} ?>
+                                        <?php if(!empty($glucides)) {echo "<tr>
                                             <td>Glucides</td>
-                                            <td><?php echo $glucides ?></td>
-                                        </tr>
-                                        <tr>
+                                            <td>"; echo $glucides; echo "</td>
+                                        </tr>";} ?>
+                                        <?php if(!empty($sucres)) {echo "<tr>
                                             <td>Sucres</td>
-                                            <td><?php echo $sucres ?></td>
-                                        </tr>
-                                        <tr>
+                                            <td>"; echo $sucres; echo "</td>
+                                        </tr>";} ?>
+                                        <?php if(!empty($fibres)) {echo "<tr>
                                             <td>Fibres alimentaires</td>
-                                            <td><?php echo $fibres ?></td>
-                                        </tr>
-                                        <tr>
+                                            <td>"; echo $fibres; echo "</td>
+                                        </tr>";} ?>
+                                        <?php if(!empty($proteines)) {echo "<tr>
                                             <td>Protéines</td>
-                                            <td><?php echo $proteines ?></td>
-                                        </tr>
-                                        <tr>
+                                            <td>"; echo $proteines; echo "</td>
+                                        </tr>";} ?>
+                                        <?php if(!empty($sel)) {echo "<tr>
                                             <td>Sel</td>
-                                            <td><?php echo $sel ?></td>
-                                        </tr>
-                                        <tr>
+                                            <td>"; echo $sel; echo "</td>
+                                        </tr>";} ?>
+                                        <?php if(!empty($alcool)) {echo "<tr>
                                             <td>Alcool</td>
-                                            <td><?php echo $alcool ?></td>
-                                        </tr>
-                                        <tr>
+                                            <td>"; echo $alcool; echo "</td>
+                                        </tr>";} ?>
+                                        <?php if(!empty($calcium)) {echo "<tr>
                                             <td>Calcium</td>
-                                            <td><?php echo $calcium ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Vitamine-b6-pyridoxine</td>
-                                            <td><?php echo $vitamine_b6 ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Vitamine-b12-cobalamine</td>
-                                            <td><?php echo $vitamine_b12 ?></td>
-                                        </tr>
-                                        <tr>
+                                            <td>"; echo $calcium; echo "</td>
+                                        </tr>";} ?>
+                                        <?php if(!empty($vitamine_b1)) {echo "<tr>
                                             <td>Vitamine-b1-thiamine</td>
-                                            <td><?php echo $vitamine_b1 ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Vitamine-b9-acide-folique</td>
-                                            <td><?php echo $vitamine_b9 ?></td>
-                                        </tr>
-                                        <tr>
+                                            <td>"; echo $vitamine_b1; echo "</td>
+                                        </tr>";} ?>
+                                        <?php if(!empty($vitamine_b2)) {echo "<tr>
                                             <td>Vitamine-b2-riboflavine</td>
-                                            <td><?php echo $vitamine_b2 ?></td>
-                                        </tr>
-                                        <tr>
+                                            <td>"; echo $vitamine_b2; echo "</td>
+                                        </tr>";} ?>
+                                        <?php if(!empty($vitamine_b6)) {echo "<tr>
+                                            <td>Vitamine-b6-pyridoxine</td>
+                                            <td>"; echo $vitamine_b6; echo "</td>
+                                        </tr>";} ?>
+                                        <?php if(!empty($vitamine_b9)) {echo "<tr>
+                                            <td>Vitamine-b9-acide-folique</td>
+                                            <td>"; echo $vitamine_b9; echo "</td>
+                                        </tr>";} ?>
+                                        <?php if(!empty($vitamine_b12)) {echo "<tr>
+                                            <td>Vitamine-b12-cobalamine</td>
+                                            <td>"; echo $vitamine_b12; echo "</td>
+                                        </tr>";} ?>
+                                        <?php if(!empty($amidons)) {echo "<tr>
                                             <td>Amidons</td>
-                                            <td><?php echo $amidons ?></td>
-                                        </tr>
-                                        <tr>
+                                            <td>"; echo $amidons; echo "</td>
+                                        </tr>";} ?>
+                                        <?php if(!empty($fer)) {echo "<tr>
                                             <td>Fer</td>
-                                            <td><?php echo $fer ?></td>
-                                        </tr>
-                                        <tr>
+                                            <td>"; echo $fer; echo "</td>
+                                        </tr>";} ?>
+                                        <?php if(!empty($carbon_footprint)) {echo "<tr>
                                             <td>Empreinte de carbon</td>
-                                            <td><?php echo $carbon_footprint ?></td>
-                                        </tr>
+                                            <td>"; echo $carbon_footprint; echo "</td>
+                                        </tr>";} ?>
                                     </tbody>
                                 </table>
                             </li>
