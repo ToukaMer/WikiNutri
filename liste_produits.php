@@ -77,7 +77,13 @@ else{
         }
 
     }
-
+    if(isset($_SESSION['nutriscore'])) {
+        if($_SESSION['nutriscore'] != "tt") {
+            $filters += ['nutriscore_grade' =>$_SESSION['nutriscore']];
+        }
+	
+    }
+    
 }
 
 $cursor=$collection->find($filters,$options);
