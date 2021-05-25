@@ -7,7 +7,8 @@ $db = $client->PRODUITS_DB;
 $collection = $client->$db->PRODUITS;
 if(isset($_GET['product'])){
     $product_id=$_GET['product'];
-    $document = $collection->findOneAndUpdate(['code' => intval($product_id)], [ '$inc' => [ 'nb_vues' => 1 ]]);
+    $document = $collection->findOne(['code' => intval($product_id)]);
+    $updatedocument = $collection->findOneAndUpdate(['code' => intval($product_id)], [ '$inc' => [ 'nb_vues' => 1 ]]);
     $name=$document['product_name'];
     $image=$document['image_url'];
     $nutriscore=$document['nutriscore_grade'];
