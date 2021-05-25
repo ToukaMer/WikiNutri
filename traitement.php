@@ -39,6 +39,14 @@ elseif (isset($_POST['submit_avancee'])) {
 		//il faut ajouter tous les $_POST comme valeurs de session pour pouvoir les passer aux autres pages
     }
 
+	if(isset($_POST['nutriscore'])) {
+        if($_POST['nutriscore'] != "tt") {
+            $filters += ['nutriscore_grade' =>$_POST['nutriscore']];
+        }
+		$_SESSION['nutriscore'] = $_POST['nutriscore'];
+	
+    }
+
 }
 
 $cursor=$collection->find($filters,$options);

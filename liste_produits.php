@@ -77,7 +77,13 @@ else{
         }
 
     }
-
+    if(isset($_SESSION['nutriscore'])) {
+        if($_SESSION['nutriscore'] != "tt") {
+            $filters += ['nutriscore_grade' =>$_SESSION['nutriscore']];
+        }
+	
+    }
+    
 }
 
 $cursor=$collection->find($filters,$options);
@@ -108,17 +114,17 @@ $cursor=$collection->find($filters,$options);
         <div class="middle">
             <div class="row">
                 <h2>Voici le résultat de votre recherche &#128525;</h2>
-                <h3>Choisissez deux produit en cochant les checkboxes correspondant pour les comparer</h3>
+                <h3>Choisissez deux produit en cochant les checkboxes correspondants pour les comparer</h3>
                 <div class="product_list">
                     <form method="post" action="comparaison_produits.php">
-                    <button type='submit' name='comparer'>Comparer</button>
+                    <button type="submit" id ="comparer" name="comparer" disabled>Comparer</button>
                     <div class="checkboxes">
                     <?php
                     foreach($cursor as $document) {
                         $name=$document['product_name'];
                         $image=$document['image_url'];
                         $code=$document['code'];
-                        echo "<figure><a href='fiche_produit.php?product=$code'><img src='$image' alt='$name' width='200' height='200'><figcaption>$name</figcaption></a><input type='checkbox' name='compare[]' value=$code></figure>";
+                        echo "<figure><a href='fiche_produit.php?product=$code'><img src='$image' alt='$name' width='200' height='200'><figcaption>$name</figcaption></a><input type='checkbox' id='compare' name='compare[]' value=$code autocomplete='off' onClick='ckChange(this)'></figure>";
 	                }
                     ?>
                     </div>
@@ -153,5 +159,31 @@ $cursor=$collection->find($filters,$options);
             </footer>
         </div>
     </div>
+    <script>
+        var j = 0;
+        function ckChange(el) {
+            var ckName = document.getElementsByName(el.name);
+            var i;
+            if(el.checked === true){
+                j = j+1;
+            }
+            if(el.checked === false){
+                j = j-1;
+                for (i = 0; i< ckName.length; i++) {
+                    ckName[i].disabled = false;
+                }
+            }
+            if(j === 2){
+                for (i = 0; i< ckName.length; i++) {
+                if(ckName[i].checked === false)
+                    ckName[i].disabled = true;
+                    document.getElementById("comparer").disabled = false;
+                }
+            }
+            if(j !== 2){
+                document.getElementById("comparer").disabled = true;
+            }
+        }
+    </script>
 </body>
 </html>
