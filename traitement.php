@@ -46,6 +46,13 @@ elseif (isset($_POST['submit_avancee'])) {
 		$_SESSION['nutriscore'] = $_POST['nutriscore'];
 	
     }
+		if(isset($_POST['ecoscore'])) {
+        if($_POST['ecoscore'] != "tt") {
+            $filters += ['ecoscore_grade_fr' =>$_POST['ecoscore']];
+        }
+		$_SESSION['ecoscore'] = $_POST['ecoscore'];
+	
+    }
 
 }
 

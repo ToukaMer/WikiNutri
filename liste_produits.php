@@ -83,6 +83,12 @@ else{
         }
 	
     }
+    if(isset($_SESSION['ecoscore'])) {
+        if($_SESSION['ecoscore'] != "tt") {
+            $filters += ['ecoscore_grade_fr' =>$_SESSION['ecoscore']];
+        }
+	
+    }
     
 }
 
