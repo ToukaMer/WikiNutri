@@ -102,7 +102,6 @@ function multipleexplode ($delimiters,$string) {
 </head>
 <body>
 
-<?php echo $document['nb_vues']?>
     <div class="grid-container">
         <div class="header">
             <h1>WikiNutri.</h1>
