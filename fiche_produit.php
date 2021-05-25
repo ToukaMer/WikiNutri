@@ -132,7 +132,7 @@ function multipleexplode ($delimiters,$string) {
                 <div class="column2">
                     <div class="product_info">
                         <ul>
-                            <?php if(!empty($nutriscore)) {echo "<li><p><a href='liste_produits.php?nutriscore=$nutriscore'><img src='images/nutri_score_$nutriscore.png' alt='$nutriscore' width='140' height='90'></a><img src='images/nova-group-$novascore.svg' alt='$novascore' width='50' height='80'><img src='images/ecoscore-$ecoscore_g.svg' alt='$ecoscore_g' width='100' height='70'></p></li>";} ?>
+                            <?php if(!empty($nutriscore)) {echo "<li><p><a href='liste_produits.php?nutriscore=$nutriscore'><img src='images/nutri_score_$nutriscore.png' alt='$nutriscore' width='140' height='90'></a>";} if(!empty($novascore)) { echo "<img src='images/nova-group-$novascore.svg' alt='$novascore' width='50' height='80'>";} if(!empty($ecoscore_g)) { echo "<img src='images/ecoscore-$ecoscore_g.svg' alt='$ecoscore_g' width='100' height='70'></p></li>";} ?>
                             <?php if(!empty($emballage)) {echo "<li><p>Emballage : "; echo $emballage; "</p></li>";} ?>
                             <?php if(!empty($poids)) {echo "<li><p>Poids Net : "; echo $poids; echo "</p></li>";} ?>
                             <?php if(!empty($portion)) {echo "<li><p>Portion : "; echo $portion; echo "</p></li>";} ?>
