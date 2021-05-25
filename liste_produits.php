@@ -97,6 +97,10 @@ $cursor=$collection->find($filters,$options);
 //echo '<pre>'; print_r($filters); echo '</pre>';
 
 ?>
+<textarea name="filters" id="filters" style="display:none;"><?php echo '"'.print_r($filters).'"'  ;?></textarea>
+<textarea name="options" id="options" style="display:none;"><?php echo '"'.print_r($options).'"'  ;?></textarea>
+
+
 <!DOCTYPE html>
 
 <html lang="fr" xmlns="http://www.w3.org/1999/xhtml">
@@ -134,9 +138,11 @@ $cursor=$collection->find($filters,$options);
 	                }
                     ?>
                     </div>
+                        <?php echo '<input type="hidden" id="lastcode" value="'.$code.'"' ?>
                     </form>
                     <button type='button' name='afficherplus'>Afficher plus</button>
                 </div>
+                <div id="load_data_message"></div>
             </div>
             <div class="row">
                 <h2>Lancez une autre recherche</h2>
