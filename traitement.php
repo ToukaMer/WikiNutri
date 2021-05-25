@@ -63,6 +63,15 @@ elseif (isset($_POST['submit_avancee'])) {
 		$_SESSION['search_marque'] = $_POST['search_marque'];
 	
     }
+	if(isset($_POST['search_label'])) {
+        if($_POST['search_label'] != " ") {
+			$search_value = $_POST['search_label'];
+			$regex = new MongoDB\BSON\Regex($search_value, 'i');
+			$filters += ["labels"=>$regex];
+        }
+		$_SESSION['search_label'] = $_POST['search_label'];
+	
+    }
 }
 
 $cursor=$collection->find($filters,$options);
