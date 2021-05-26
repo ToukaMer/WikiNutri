@@ -148,6 +148,12 @@ img {
   border-radius: 16px;
 }
 
+.row input[type=text] {
+    border: 1px solid #ddd;
+    font-family: 'Montserrat Alternates', sans-serif;
+    border-radius: 16px;
+}
+
 select {
   width: 20%;
   font-size: 14px;

@@ -46,15 +46,15 @@ elseif (isset($_POST['submit_avancee'])) {
 		$_SESSION['nutriscore'] = $_POST['nutriscore'];
 	
     }
-		if(isset($_POST['ecoscore'])) {
+	if(isset($_POST['ecoscore'])) {
         if($_POST['ecoscore'] != "tt") {
             $filters += ['ecoscore_grade_fr' =>$_POST['ecoscore']];
-        }
+		}
 		$_SESSION['ecoscore'] = $_POST['ecoscore'];
 	
     }
 
-		if(isset($_POST['search_marque'])) {
+	if(isset($_POST['search_marque'])) {
         if($_POST['search_marque'] != " ") {
 			$search_value = $_POST['search_marque'];
 			$regex = new MongoDB\BSON\Regex($search_value, 'i');
@@ -71,6 +71,20 @@ elseif (isset($_POST['submit_avancee'])) {
         }
 		$_SESSION['search_label'] = $_POST['search_label'];
 	
+    }
+	if(isset($_POST['ingredient'])) {
+        if($_POST['ingredient'] != " ") {
+			$search_value = $_POST['ingredient'];
+			if($_POST['ingredient_choix']=="oui"){
+				$regex = new MongoDB\BSON\Regex($search_value, 'i');
+			}
+			elseif ($_POST['ingredient_choix']=="non") {
+				$regex = new MongoDB\BSON\Regex('^(?!'.$search_value.'.)*$', 'i');
+            }
+			$filters += ["ingredients_text"=>$regex];
+        }
+		$_SESSION['ingredient'] = $_POST['ingredient'];
+		$_SESSION['ingredient_choix'] = $_POST['ingredient_choix'];
     }
 }
 
