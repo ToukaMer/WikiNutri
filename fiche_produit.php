@@ -247,6 +247,10 @@ function multipleexplode ($delimiters,$string) {
                                     </tbody>
                                 </table>
                             </li>
+                            <li><form action="download.php" method="post">
+								<p><button type="submit" name="code_fixe" value="<?=$code_fixe;?>">download as Excel Spreadsheet</button></p>
+								</form>
+							</li>
                         </ul>
                     </div>
                 </div>
