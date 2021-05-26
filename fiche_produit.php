@@ -5,6 +5,11 @@ $client = new MongoDB\Client(
     'mongodb+srv://Yosra:iaIqRPWxXN9AsFuF@cluster0.bbe6n.mongodb.net/PRODUITS_DB?retryWrites=true&w=majority');
 $db = $client->PRODUITS_DB;
 $collection = $client->$db->PRODUITS;
+$filters = [];
+$options = [];
+
+
+
 if(isset($_GET['product'])){
     $product_id=$_GET['product'];
     $document = $collection->findOne(['code' => intval($product_id)]);
@@ -43,6 +48,7 @@ if(isset($_GET['product'])){
     $amidons=$document['starch_100g'];
     $fer=$document['iron_100g'];
     $carbon_footprint=$document['carbon-footprint_100g'];
+    $code=$document['code'];
 }
 else{
     $product_id=$_SESSION['search_name'];
@@ -82,8 +88,13 @@ else{
         $amidons=$document['starch_100g'];
         $fer=$document['iron_100g'];
         $carbon_footprint=$document['carbon-footprint_100g'];
+        $code=$document['code'];
+    
    }
 }
+
+// pour faire le display de suggestion par marque
+$cursor_suggestion=$collection->find( array("brands" => $marque));
 
 function multipleexplode ($delimiters,$string) {
   $phase = str_replace($delimiters, $delimiters[0], $string);
@@ -156,6 +167,10 @@ function multipleexplode ($delimiters,$string) {
                                         <?php if(!empty($energie)) {echo "<tr>
                                             <td>Energie</td>
                                             <td>"; echo $energie; echo "</td>
+                                        </tr>";}?>
+                                        <?php if(!empty($code)) {echo "<tr>
+                                            <td>Code</td>
+                                            <td>"; echo $code; echo "</td>
                                         </tr>";}?>
                                         <?php if(!empty($gras)) {echo "<tr>
                                             <td>Matières grasses</td>
@@ -235,21 +250,20 @@ function multipleexplode ($delimiters,$string) {
         </div>
 
         <div class="right">
-            <h3>Suggestion d'autres produits similaires</h3>
+            <h3>Suggestion d'autres produits de la même marque</h3>
             <div class="column_list">
                 <ul>
-                    <li>
-                        <figure>
-                            <img src="images/tresor_cacahuete.jpg" alt="tresor_cacahuete">
-                            <figcaption>Kellogs Trésor</figcaption>
-                        </figure>
-                    </li>
-                    <li>
-                        <figure>
-                            <img src="images/tresor_cacahuete.jpg" alt="tresor_cacahuete">
-                            <figcaption>Kellogs Trésor</figcaption>
-                        </figure>
-                    </li>
+                <?php
+                $i = 0;
+                foreach($cursor_suggestion as $document)  {
+                    $name=$document['product_name'];
+                    $image=$document['image_url'];
+                    $code=$document['code'];
+                    echo "<li><figure><a href='fiche_produit.php?product=$code'><img src='$image' alt='$name' width='400' height='250'><figcaption>$name</figcaption></a></figure></li>";
+                    $i++;
+                    if ($i > 3) break;
+                }
+                ?>
                 </ul>
             </div>
         </div>
