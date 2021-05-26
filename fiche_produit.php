@@ -49,6 +49,7 @@ if(isset($_GET['product'])){
     $fer=$document['iron_100g'];
     $carbon_footprint=$document['carbon-footprint_100g'];
     $code=$document['code'];
+    $code_fixe=$document['code'];
 }
 else{
     $product_id=$_SESSION['search_name'];
@@ -89,12 +90,19 @@ else{
         $fer=$document['iron_100g'];
         $carbon_footprint=$document['carbon-footprint_100g'];
         $code=$document['code'];
+        $code_fixe=$document['code'];
     
    }
 }
 
 // pour faire le display de suggestion par marque
-$cursor_suggestion=$collection->find( array("brands" => $marque));
+$cursor_suggestion=$collection->find( array("nutriscore_grade" => $nutriscore, "categories" => $categories));
+$cursor_count=$collection->find( array("nutriscore_grade" => $nutriscore, "categories" => $categories));
+$a = 0;
+foreach($cursor_count as $document){
+	$a++;
+}
+
 
 function multipleexplode ($delimiters,$string) {
   $phase = str_replace($delimiters, $delimiters[0], $string);
@@ -166,11 +174,7 @@ function multipleexplode ($delimiters,$string) {
                                     <tbody>
                                         <?php if(!empty($energie)) {echo "<tr>
                                             <td>Energie</td>
-                                            <td>"; echo $energie; echo "</td>
-                                        </tr>";}?>
-                                        <?php if(!empty($code)) {echo "<tr>
-                                            <td>Code</td>
-                                            <td>"; echo $code; echo "</td>
+                                            <td>"; echo $energie ; echo "</td>
                                         </tr>";}?>
                                         <?php if(!empty($gras)) {echo "<tr>
                                             <td>Matières grasses</td>
@@ -250,20 +254,27 @@ function multipleexplode ($delimiters,$string) {
         </div>
 
         <div class="right">
-            <h3>Suggestion d'autres produits de la même marque</h3>
+            <h3>Suggestion d'autres produits de la même catégories et même nutriscore</h3>
             <div class="column_list">
                 <ul>
+
                 <?php
-                $i = 0;
+                $count = 0;
+                $random_number_array = range(0, $a+1);
+                shuffle($random_number_array );
+                $random_number_array = array_slice($random_number_array ,0,4);
                 foreach($cursor_suggestion as $document)  {
                     $name=$document['product_name'];
                     $image=$document['image_url'];
                     $code=$document['code'];
-                    echo "<li><figure><a href='fiche_produit.php?product=$code'><img src='$image' alt='$name' width='400' height='250'><figcaption>$name</figcaption></a></figure></li>";
-                    $i++;
-                    if ($i > 3) break;
+                    if ($code != $code_fixe)
+                    	if (in_array($count, $random_number_array))
+		                    echo "<li><figure><a href='fiche_produit.php?product=$code'><img src='$image' alt='$name' width='400' height='250'><figcaption>$name</figcaption></a></figure></li>";
+	                $count++;
+
                 }
                 ?>
+
                 </ul>
             </div>
         </div>
