@@ -105,6 +105,18 @@ else{
         }
 	
     }
+    if(isset($_SESSION['ingredient'])) {
+        if($_SESSION['ingredient'] != " ") {
+			$search_value = $_SESSION['ingredient'];
+			if($_SESSION['ingredient_choix']=="oui"){
+				$regex = new MongoDB\BSON\Regex($search_value, 'i');
+			}
+			elseif ($_SESSION['ingredient_choix']=="non") {
+				$regex = new MongoDB\BSON\Regex('^(?!'.$search_value.'.)*$', 'i');
+            }
+			$filters += ["ingredients_text"=>$regex];
+        }
+    }
     
 }
 
