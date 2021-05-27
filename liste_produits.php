@@ -128,6 +128,21 @@ else{
         $filters += ["allergens" => $regex];
     }
 
+    if(isset($_SESSION['nutriment'])) {
+        if($_SESSION['nutriment_choix'] != " ") {
+			$option_value = $_SESSION['nutriment'];
+			if($_SESSION['nutriment_choix'] == "egal") {
+				$filters += [$option_value => ['$eq' => $_SESSION['nutriment_num']]];
+			}
+			elseif ($_SESSION['nutriment_choix'] == "sup"){
+				$filters += [$option_value => ['$gte' => $_SESSION['nutriment_num']]];
+			}
+			elseif($_SESSION['nutriment_choix'] == "inf") {
+				$filters += [$option_value => ['$lte' => $_SESSION['nutriment_num']]];
+			}
+        }
+    }
+
 
 }
 

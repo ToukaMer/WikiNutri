@@ -99,6 +99,24 @@ elseif (isset($_POST['submit_avancee'])) {
         $filters += ['nb_vues' => ['$gte' => 1]];
         $_SESSION['produits_populaires'] = $_POST['produits_populaires'];
     }
+
+	if(isset($_POST['nutriment'])) {
+        if($_POST['nutriment_choix'] != " ") {
+			$option_value = $_POST['nutriment'];
+			if($_POST['nutriment_choix'] == "egal") {
+				$filters += [$option_value => ['$eq' => $_POST['nutriment_num']]];
+			}
+			elseif ($_POST['nutriment_choix'] == "sup"){
+				$filters += [$option_value => ['$gte' => $_POST['nutriment_num']]];
+			}
+			elseif($_POST['nutriment_choix'] == "inf") {
+				$filters += [$option_value => ['$lte' => $_POST['nutriment_num']]];
+			}
+        }
+		$_SESSION['nutriment'] = $_POST['nutriment'];
+		$_SESSION['nutriment_choix'] = $_POST['nutriment_choix'];
+		$_SESSION['nutriment_num'] = $_POST['nutriment_num'];
+    }
 }
 
 $cursor=$collection->find($filters,$options);

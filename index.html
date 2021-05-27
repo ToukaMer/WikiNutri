@@ -92,10 +92,6 @@
                             </p>
                             <p>
                                 Choisir par nutriment :
-                                <select name="nutriment_choix">
-                                    <option value="oui">Contient</option>
-                                    <option value="non">Ne contient pas</option>
-                                </select>
                                 <select name="nutriment">
                                     <option value="tous">Tous</option>
                                     <option value="vitamin-e_100g">Vitamine E</option>
@@ -125,6 +121,13 @@
                                     <option value="potassium_100g">Potassium</option>
                                     <option value="carbohydrates_100g">Glucides</option>
                                 </select>
+                                <select name="nutriment_choix">
+                                    <option value="default"></option>
+                                    <option value="egal">Égal</option>
+                                    <option value="sup">Supérieur</option>
+                                    <option value="inf">Inférieur</option>
+                                </select> à
+                                <input type="number" name="nutriment_num" min="0">
                             </p>
                             <p>
                                 Choisir par ingrédient :
