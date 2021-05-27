@@ -39,12 +39,14 @@
                     <form method="post" action="traitement.php">
                         <div class="column">
                             <p>
-                                Choisir un allèrgene à éliminer :
-                                <select name="allergene" id="pet-select1">
-                                    <option value="milk">Milk</option>
-                                    <option value="eggs">Eggs</option>
-                                    <option value="gluten">Gluten</option>
-                                </select>
+                                Choisir les allèrgenes à éliminer :
+
+                                Lait <input type="checkbox" name="allergenes[]" value="milk" />
+                                Oeufs <input type="checkbox" name="allergenes[]" value="eggs" />
+                                Gluten <input type="checkbox" name="allergenes[]" value="gluten" />
+                                Noix <input type="checkbox" name="allergenes[]" value="nuts" />
+
+
                             </p>
                             <p>
                                 Choisir une catégorie :

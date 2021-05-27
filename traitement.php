@@ -87,11 +87,12 @@ elseif (isset($_POST['submit_avancee'])) {
 		$_SESSION['ingredient_choix'] = $_POST['ingredient_choix'];
     }
 
-    if(isset($_POST['allergene']) && $_POST['allergene']!="") {
-        $allergene = $_POST['allergene'];
-        $regex = new MongoDB\BSON\Regex('^(?!'.$allergene.'.)*$', 'i');
-        $filters += ["allergens" => $regex];
-        $_SESSION['allergene'] = $_POST['allergene'];
+    if(isset($_POST['allergenes']) && !empty($_POST['allergenes'])){
+        foreach($_POST['allergenes'] as $allergene) {
+            $regex = new MongoDB\BSON\Regex('^(?!' . $allergene . '.)*$', 'i');
+            $filters += ["allergens" => $regex];
+        }
+        $_SESSION['allergenes'] = $_POST['allergenes'];
 
     }
 
