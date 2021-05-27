@@ -88,7 +88,11 @@ elseif (isset($_POST['submit_avancee'])) {
     }
 
     if(isset($_POST['allergene']) && $_POST['allergene']!="") {
-        $search_value = $_POST['allergene'];
+        $allergene = $_POST['allergene'];
+        $regex = new MongoDB\BSON\Regex('^(?!'.$allergene.'.)*$', 'i');
+        $filters += ["allergens" => $regex];
+        $_SESSION['allergene'] = $_POST['allergene'];
+
     }
 
     if(isset($_POST['produits_populaires'])){

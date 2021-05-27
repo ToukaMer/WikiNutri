@@ -122,6 +122,12 @@ else{
         $options = ['sort' => ['nb_vues' => -1]];
     }
 
+    if(isset($_SESSION['allergene'])){
+        $allergene = $_SESSION['allergene'];
+        $regex = new MongoDB\BSON\Regex('^(?!'.$allergene.'.)*$', 'i');
+        $filters += ["allergens" => $regex];
+    }
+
 
 }
 
