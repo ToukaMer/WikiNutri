@@ -86,6 +86,15 @@ elseif (isset($_POST['submit_avancee'])) {
 		$_SESSION['ingredient'] = $_POST['ingredient'];
 		$_SESSION['ingredient_choix'] = $_POST['ingredient_choix'];
     }
+
+    if(isset($_POST['allergene']) && $_POST['allergene']!="") {
+        $search_value = $_POST['allergene'];
+    }
+
+    if(isset($_POST['produits_populaires'])){
+        $filters += ['nb_vues' => ['$gte' => 1]];
+        $_SESSION['produits_populaires'] = $_POST['produits_populaires'];
+    }
 }
 
 $cursor=$collection->find($filters,$options);
