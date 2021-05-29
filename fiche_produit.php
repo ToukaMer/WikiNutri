@@ -69,8 +69,9 @@ function multipleexplode ($delimiters,$string) {
   $processed = explode($delimiters[0], $phase);
   return  $processed;
 }
+?>
 
-   ?>
+
 <!DOCTYPE html>
 
 <html lang="fr" xmlns="http://www.w3.org/1999/xhtml">
@@ -208,7 +209,7 @@ function multipleexplode ($delimiters,$string) {
                                 </table>
                             </li>
                             <li><form action="download.php" method="post">
-								<p><button type="submit" name="code_fixe" value="<?=$code_fixe;?>">download as Excel Spreadsheet</button></p>
+								<p><button type="submit" name="code_fixe" value="<?=$code_fixe;?>">Download sous format Excel</button></p>
 								</form>
 							</li>
                         </ul>
@@ -218,7 +219,7 @@ function multipleexplode ($delimiters,$string) {
         </div>
 
         <div class="right">
-            <h3>Suggestion d'autres produits de la même catégories et même nutriscore</h3>
+            <h3>Suggestion</h3>
             <div class="column_list">
                 <ul>
 

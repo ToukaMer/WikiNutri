@@ -134,7 +134,7 @@ elseif ($i==1) {
 	$_SESSION['code'] = $document['code'];
 }
 elseif ($i==0) {
-	header('Location: produit_404.html');
+	header('Location: produit_404.php');
 }
 
 ?>

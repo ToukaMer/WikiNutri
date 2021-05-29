@@ -1,3 +1,20 @@
+<?php
+require 'vendor/autoload.php';
+session_start();
+$client = new MongoDB\Client(
+    'mongodb+srv://Yosra:iaIqRPWxXN9AsFuF@cluster0.bbe6n.mongodb.net/PRODUITS_DB?retryWrites=true&w=majority');
+$db = $client->PRODUITS_DB;
+$collection = $client->$db->PRODUITS;
+$filters = [];
+$options = [];
+
+$filters += ['nb_vues' => ['$gte' => 1]];
+$options = ['sort' => ['nb_vues' => -1]];
+
+$cursor_suggestion=$collection->find($filters,$options);
+
+?>
+
 <!DOCTYPE html>
 
 <html lang="fr" xmlns="http://www.w3.org/1999/xhtml">
@@ -20,14 +37,19 @@
                 <h2>Oups ! Nous n'avons pas trouvé le produit que vous cherchez &#128531;</h2>
                 <h3>Voici quelques suggestions ...</h3>
                 <div class="product_list">
-                    <figure>
-                        <img src="images/tresor_cacahuete.jpg" alt="tresor_cacahuete">
-                        <figcaption>Kellogs Trésor</figcaption>
-                    </figure>
-                    <figure>
-                        <img src="images/tresor_cacahuete.jpg" alt="tresor_cacahuete">
-                        <figcaption>Kellogs Trésor</figcaption>
-                    </figure>
+                <?php
+
+                $count = 0;
+                foreach($cursor_suggestion as $document)  {
+                    $name=$document['product_name'];
+                    $image=$document['image_url'];
+                    $code=$document['code'];
+                    if ($count < 3)
+                            echo "<li><figure><a href='fiche_produit.php?product=$code'><img src='$image' alt='$name' width='400' height='250'><figcaption>$name</figcaption></a></figure></li>";
+                    $count++;
+
+                }
+                ?>
                 </div>
             </div>
             <div class="row">
