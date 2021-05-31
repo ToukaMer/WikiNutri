@@ -79,18 +79,18 @@ $produit2eco=$produit2['ecoscore_grade_fr'];
                         <tbody>
                             <tr>
                                 <td>Nutri Score</td>
-                                <td><?php echo "<img src='images/nutri_score_$produit1nutri.png' alt='$produit1nutri' width='140' height='90'>"; ?></td>
-                                <td><?php echo "<img src='images/nutri_score_$produit2nutri.png' alt='$produit2nutri' width='140' height='90'>"; ?></td>
+                                <td><?php if(!empty($produit1nutri)){ echo "<img src='images/nutri_score_$produit1nutri.png' alt='$produit1nutri' width='140' height='90'>"; }; ?></td>
+                                <td><?php if(!empty($produit2nutri)){ echo "<img src='images/nutri_score_$produit2nutri.png' alt='$produit2nutri' width='140' height='90'>"; }; ?></td>
                             </tr>
                             <tr>
                                 <td>Nova Score</td>
-                                <td><?php echo "<img src='images/nova-group-$produit1nova.svg' alt='$produit1nova' width='50' height='80'>"; ?></td>
-                                <td><?php echo "<img src='images/nova-group-$produit2nova.svg' alt='$produit2nova' width='50' height='80'>"; ?></td>
+                                <td><?php if(!empty($produit1nova)){ echo "<img src='images/nova-group-$produit1nova.svg' alt='$produit1nova' width='50' height='80'>"; }; ?></td>
+                                <td><?php if(!empty($produit2nova)){ echo "<img src='images/nova-group-$produit2nova.svg' alt='$produit2nova' width='50' height='80'>"; }; ?></td>
                             </tr>
                             <tr>
                                 <td>Éco Score</td>
-                                <td><?php echo "<img src='images/ecoscore-$produit1eco.svg' alt='$produit1eco' width='100' height='70'>"; ?></td>
-                                <td><?php echo "<img src='images/ecoscore-$produit2eco.svg' alt='$produit2eco' width='100' height='70'>"; ?></td>
+                                <td><?php if(!empty($produit1eco)){ echo "<img src='images/ecoscore-$produit1eco.svg' alt='$produit1eco' width='100' height='70'>"; }; ?></td>
+                                <td><?php if(!empty($produit2eco)){ echo "<img src='images/ecoscore-$produit2eco.svg' alt='$produit2eco' width='100' height='70'>"; }; ?></td>
                             </tr>
                             <tr>
                                 <td>Emballage</td>
