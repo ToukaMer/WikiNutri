@@ -97,6 +97,15 @@ elseif (isset($_POST['submit_avancee'])) {
 
     }
 
+    if(isset($_POST['categorie'])){
+        $categorie = $_POST['categorie'];
+        $regex = new MongoDB\BSON\Regex($categorie, 'i');
+        $filters += ["categories"=>$regex];
+
+        $_SESSION['categorie'] = $_POST['categorie'];
+
+    }
+
     if(isset($_POST['produits_populaires'])){
         $filters += ['nb_vues' => ['$gte' => 1]];
         $_SESSION['produits_populaires'] = $_POST['produits_populaires'];

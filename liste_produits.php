@@ -130,6 +130,13 @@ else{
         }
     }
 
+    if(isset($_SESSION['categorie'])){
+        $categorie = $_SESSION['categorie'];
+        $regex = new MongoDB\BSON\Regex($categorie, 'i');
+        $filters += ["categories"=>$regex];
+
+    }
+
     if(isset($_SESSION['nutriment'])) {
         if($_SESSION['nutriment_choix'] != " ") {
 			$option_value = $_SESSION['nutriment'];
