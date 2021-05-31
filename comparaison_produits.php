@@ -28,16 +28,26 @@ $produit2nova=$produit2['nova_group'];
 $produit1eco=$produit1['ecoscore_grade_fr'];
 $produit2eco=$produit2['ecoscore_grade_fr'];
 
-$code_fixe=$produit1['code'];
-$categories=$produit1['categories'];
+$code_fixe1=$produit1['code'];
+$categories1=$produit1['categories'];
+$code_fixe2=$produit2['code'];
+$categories2=$produit2['categories'];
 
 
-// pour faire le display de suggestion par marque
-$cursor_suggestion=$collection->find( array("nutriscore_grade" => $produit1nutri, "categories" => $categories));
-$cursor_count=$collection->find( array("nutriscore_grade" => $produit1nutri, "categories" => $categories));
-$a = 0;
-foreach($cursor_count as $document){
-	$a++;
+// Produit 1
+$cursor_suggestion1=$collection->find( array("nutriscore_grade" => $produit1nutri, "categories" => $categories1));
+$cursor_count1=$collection->find( array("nutriscore_grade" => $produit1nutri, "categories" => $categories1));
+$a1 = 0;
+foreach($cursor_count1 as $document){
+	$a1++;
+}
+
+// Produit 2
+$cursor_suggestion2=$collection->find( array("nutriscore_grade" => $produit2nutri, "categories" => $categories2));
+$cursor_count2=$collection->find( array("nutriscore_grade" => $produit2nutri, "categories" => $categories2));
+$a2 = 0;
+foreach($cursor_count2 as $document){
+	$a2++;
 }
 
 ?>
@@ -252,19 +262,38 @@ foreach($cursor_count as $document){
                 <ul>
                 <?php
                 $count = 0;
-                $random_number_array = range(0, $a+1);
+                $code_array = array();
+                $random_number_array = range(0, $a1+1);
                 shuffle($random_number_array );
-                $random_number_array = array_slice($random_number_array ,0,4);
-                foreach($cursor_suggestion as $document)  {
+                $random_number_array = array_slice($random_number_array ,0,3);
+                foreach($cursor_suggestion1 as $document)  {
                     $name=$document['product_name'];
                     $image=$document['image_url'];
                     $code=$document['code'];
-                    if ($code != $code_fixe)
-                    	if (in_array($count, $random_number_array))
-		                    echo "<li><figure><a href='fiche_produit.php?product=$code'><img src='$image' alt='$name' width='400' height='250'><figcaption>$name</figcaption></a></figure></li>";
+                    if ($code != $code_fixe1)
+                    	if ($code != $code_fixe2)
+                    			if (in_array($count, $random_number_array))
+		                   		 echo "<li><figure><a href='fiche_produit.php?product=$code'><img src='$image' alt='$name' width='400' height='250'><figcaption>$name</figcaption></a></figure></li>";
 	                $count++;
+	                array_push($code_array, $code);
 
                 }
+
+                $count = 0;
+                $random_number_array = range(0, $a2+1);
+                shuffle($random_number_array );
+                $random_number_array = array_slice($random_number_array ,0,3);
+                foreach($cursor_suggestion2 as $document)  {
+                    $name=$document['product_name'];
+                    $image=$document['image_url'];
+                    $code=$document['code'];
+                    if ($code != $code_fixe1)
+                    	if ($code != $code_fixe2)
+                    			if (in_array($count, $random_number_array))
+		                    		echo "<li><figure><a href='fiche_produit.php?product=$code'><img src='$image' alt='$name' width='400' height='250'><figcaption>$name</figcaption></a></figure></li>";
+	                $count++;
+                }
+
                 ?>
                 </ul>
             </div>
