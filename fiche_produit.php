@@ -218,8 +218,9 @@ function multipleexplode ($delimiters,$string) {
         </div>
 
         <div class="right">
-            <h3>Suggestion</h3>
+            <h3>Suggestion de produits similaires</h3>
             <div class="column_list">
+            
                 <ul>
 
                 <?php
@@ -233,7 +234,7 @@ function multipleexplode ($delimiters,$string) {
                     $code=$document['code'];
                     if ($code != $code_fixe)
                     	if (in_array($count, $random_number_array))
-		                    echo "<li><figure><a href='fiche_produit.php?product=$code'><img src='$image' alt='$name' width='400' height='250'><figcaption>$name</figcaption></a></figure></li>";
+		                    echo "<li><figure><a href='fiche_produit.php?product=$code'><img src='$image' alt='$name' width='200' height='150'><figcaption>$name</figcaption></a></figure></li>";
 	                $count++;
 
                 }

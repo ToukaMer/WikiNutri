@@ -60,6 +60,7 @@ body {
 /* Style the right column */
 .right {
   grid-area: right;
+  text-align: center;
 }
 
 /* Style the footer */
@@ -83,14 +84,8 @@ body {
     flex-wrap: wrap;
 }
 
-.column_list{
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  flex-wrap: wrap;
-  padding: 0 1px;
-  flex: 25%;
-  max-width: 25%;
-  text-align : center;
+.column_list {
+    text-align: center;
 }
 
 .column_list img {

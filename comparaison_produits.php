@@ -27,6 +27,29 @@ $produit1nova=$produit1['nova_group'];
 $produit2nova=$produit2['nova_group'];
 $produit1eco=$produit1['ecoscore_grade_fr'];
 $produit2eco=$produit2['ecoscore_grade_fr'];
+
+$code_fixe1=$produit1['code'];
+$categories1=$produit1['categories'];
+$code_fixe2=$produit2['code'];
+$categories2=$produit2['categories'];
+
+
+// Produit 1
+$cursor_suggestion1=$collection->find( array("nutriscore_grade" => $produit1nutri, "categories" => $categories1));
+$cursor_count1=$collection->find( array("nutriscore_grade" => $produit1nutri, "categories" => $categories1));
+$a1 = 0;
+foreach($cursor_count1 as $document){
+	$a1++;
+}
+
+// Produit 2
+$cursor_suggestion2=$collection->find( array("nutriscore_grade" => $produit2nutri, "categories" => $categories2));
+$cursor_count2=$collection->find( array("nutriscore_grade" => $produit2nutri, "categories" => $categories2));
+$a2 = 0;
+foreach($cursor_count2 as $document){
+	$a2++;
+}
+
 ?>
 <!DOCTYPE html>
 
@@ -79,18 +102,18 @@ $produit2eco=$produit2['ecoscore_grade_fr'];
                         <tbody>
                             <tr>
                                 <td>Nutri Score</td>
-                                <td><?php echo "<img src='images/nutri_score_$produit1nutri.png' alt='$produit1nutri' width='140' height='90'>"; ?></td>
-                                <td><?php echo "<img src='images/nutri_score_$produit2nutri.png' alt='$produit2nutri' width='140' height='90'>"; ?></td>
+                                <td><?php if(!empty($produit1nutri)){ echo "<img src='images/nutri_score_$produit1nutri.png' alt='$produit1nutri' width='140' height='90'>"; }; ?></td>
+                                <td><?php if(!empty($produit2nutri)){ echo "<img src='images/nutri_score_$produit2nutri.png' alt='$produit2nutri' width='140' height='90'>"; }; ?></td>
                             </tr>
                             <tr>
                                 <td>Nova Score</td>
-                                <td><?php echo "<img src='images/nova-group-$produit1nova.svg' alt='$produit1nova' width='50' height='80'>"; ?></td>
-                                <td><?php echo "<img src='images/nova-group-$produit2nova.svg' alt='$produit2nova' width='50' height='80'>"; ?></td>
+                                <td><?php if(!empty($produit1nova)){ echo "<img src='images/nova-group-$produit1nova.svg' alt='$produit1nova' width='50' height='80'>"; }; ?></td>
+                                <td><?php if(!empty($produit2nova)){ echo "<img src='images/nova-group-$produit2nova.svg' alt='$produit2nova' width='50' height='80'>"; }; ?></td>
                             </tr>
                             <tr>
                                 <td>Éco Score</td>
-                                <td><?php echo "<img src='images/ecoscore-$produit1eco.svg' alt='$produit1eco' width='100' height='70'>"; ?></td>
-                                <td><?php echo "<img src='images/ecoscore-$produit2eco.svg' alt='$produit2eco' width='100' height='70'>"; ?></td>
+                                <td><?php if(!empty($produit1eco)){ echo "<img src='images/ecoscore-$produit1eco.svg' alt='$produit1eco' width='100' height='70'>"; }; ?></td>
+                                <td><?php if(!empty($produit2eco)){ echo "<img src='images/ecoscore-$produit2eco.svg' alt='$produit2eco' width='100' height='70'>"; }; ?></td>
                             </tr>
                             <tr>
                                 <td>Emballage</td>
@@ -237,18 +260,41 @@ $produit2eco=$produit2['ecoscore_grade_fr'];
             <h3>Suggestion d'autres produits similaires</h3>
             <div class="column_list">
                 <ul>
-                    <li>
-                        <figure>
-                            <img src="images/tresor_cacahuete.jpg" alt="tresor_cacahuete">
-                            <figcaption>Kellogs Trésor</figcaption>
-                        </figure>
-                    </li>
-                    <li>
-                        <figure>
-                            <img src="images/tresor_cacahuete.jpg" alt="tresor_cacahuete">
-                            <figcaption>Kellogs Trésor</figcaption>
-                        </figure>
-                    </li>
+                <?php
+                $count = 0;
+                $code_array = array();
+                $random_number_array = range(0, $a1+1);
+                shuffle($random_number_array );
+                $random_number_array = array_slice($random_number_array ,0,3);
+                foreach($cursor_suggestion1 as $document)  {
+                    $name=$document['product_name'];
+                    $image=$document['image_url'];
+                    $code=$document['code'];
+                    if ($code != $code_fixe1)
+                    	if ($code != $code_fixe2)
+                    			if (in_array($count, $random_number_array))
+		                   		 echo "<li><figure><a href='fiche_produit.php?product=$code'><img src='$image' alt='$name' width='400' height='250'><figcaption>$name</figcaption></a></figure></li>";
+	                $count++;
+	                array_push($code_array, $code);
+
+                }
+
+                $count = 0;
+                $random_number_array = range(0, $a2+1);
+                shuffle($random_number_array );
+                $random_number_array = array_slice($random_number_array ,0,3);
+                foreach($cursor_suggestion2 as $document)  {
+                    $name=$document['product_name'];
+                    $image=$document['image_url'];
+                    $code=$document['code'];
+                    if ($code != $code_fixe1)
+                    	if ($code != $code_fixe2)
+                    			if (in_array($count, $random_number_array))
+		                    		echo "<li><figure><a href='fiche_produit.php?product=$code'><img src='$image' alt='$name' width='400' height='250'><figcaption>$name</figcaption></a></figure></li>";
+	                $count++;
+                }
+
+                ?>
                 </ul>
             </div>
         </div>
