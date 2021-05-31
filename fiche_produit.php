@@ -97,7 +97,6 @@ function multipleexplode ($delimiters,$string) {
                     <p><input type="search" id="site-search" name="search_name" placeholder="Insérer le nom de l'aliment"></p>
                     <p>
                         <button type="submit" name="rapide">Recherche rapide</button>
-                        <button type="submit" name="avancee">Recherche avancée</button>
                     </p>
                 </form>
             </div>

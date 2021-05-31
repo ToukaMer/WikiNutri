@@ -36,7 +36,7 @@ $cursor_suggestion=$collection->find($filters,$options);
             <div class="row">
                 <h2>Oups ! Nous n'avons pas trouvé le produit que vous cherchez &#128531;</h2>
                 <h3>Voici quelques suggestions ...</h3>
-                <div class="product_list">
+                <div class="checkboxes">
                 <?php
 
                 $count = 0;
@@ -44,8 +44,8 @@ $cursor_suggestion=$collection->find($filters,$options);
                     $name=$document['product_name'];
                     $image=$document['image_url'];
                     $code=$document['code'];
-                    if ($count < 3)
-                            echo "<li><figure><a href='fiche_produit.php?product=$code'><img src='$image' alt='$name' width='400' height='250'><figcaption>$name</figcaption></a></figure></li>";
+                    if ($count < 8)
+                            echo "<figure><a href='fiche_produit.php?product=$code'><img src='$image' alt='$name' width='200' height='200'><figcaption>$name</figcaption></a></figure>";
                     $count++;
 
                 }
@@ -58,7 +58,6 @@ $cursor_suggestion=$collection->find($filters,$options);
                     <p><input type="search" id="site-search" name="search_name" placeholder="Insérer le nom de l'aliment"></p>
                     <p>
                         <button type="submit" name="rapide">Recherche rapide</button>
-                        <button type="submit" name="avancee">Recherche avancée</button>
                     </p>
                 </form>
             </div>
