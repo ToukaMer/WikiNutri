@@ -27,6 +27,19 @@ $produit1nova=$produit1['nova_group'];
 $produit2nova=$produit2['nova_group'];
 $produit1eco=$produit1['ecoscore_grade_fr'];
 $produit2eco=$produit2['ecoscore_grade_fr'];
+
+$code_fixe=$produit1['code'];
+$categories=$produit1['categories'];
+
+
+// pour faire le display de suggestion par marque
+$cursor_suggestion=$collection->find( array("nutriscore_grade" => $produit1nutri, "categories" => $categories));
+$cursor_count=$collection->find( array("nutriscore_grade" => $produit1nutri, "categories" => $categories));
+$a = 0;
+foreach($cursor_count as $document){
+	$a++;
+}
+
 ?>
 <!DOCTYPE html>
 
@@ -237,18 +250,22 @@ $produit2eco=$produit2['ecoscore_grade_fr'];
             <h3>Suggestion d'autres produits similaires</h3>
             <div class="column_list">
                 <ul>
-                    <li>
-                        <figure>
-                            <img src="images/tresor_cacahuete.jpg" alt="tresor_cacahuete">
-                            <figcaption>Kellogs Trésor</figcaption>
-                        </figure>
-                    </li>
-                    <li>
-                        <figure>
-                            <img src="images/tresor_cacahuete.jpg" alt="tresor_cacahuete">
-                            <figcaption>Kellogs Trésor</figcaption>
-                        </figure>
-                    </li>
+                <?php
+                $count = 0;
+                $random_number_array = range(0, $a+1);
+                shuffle($random_number_array );
+                $random_number_array = array_slice($random_number_array ,0,4);
+                foreach($cursor_suggestion as $document)  {
+                    $name=$document['product_name'];
+                    $image=$document['image_url'];
+                    $code=$document['code'];
+                    if ($code != $code_fixe)
+                    	if (in_array($count, $random_number_array))
+		                    echo "<li><figure><a href='fiche_produit.php?product=$code'><img src='$image' alt='$name' width='400' height='250'><figcaption>$name</figcaption></a></figure></li>";
+	                $count++;
+
+                }
+                ?>
                 </ul>
             </div>
         </div>
