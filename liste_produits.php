@@ -6,8 +6,8 @@ $client = new MongoDB\Client(
 $db = $client->PRODUCTS_DB;
 $collection = $client->$db->PRODUCTS;
 $filters = [];
-$options = [];
-
+$options = ['sort' => ['code' => 1]];
+$i=0;
 if(isset($_GET['marque'])){
 
     $marque_id=$_GET['marque'];
@@ -134,7 +134,6 @@ else{
         $categorie = $_SESSION['categorie'];
         $regex = new MongoDB\BSON\Regex($categorie, 'i');
         $filters += ["categories"=>$regex];
-
     }
 
     if(isset($_SESSION['nutriment'])) {
@@ -188,17 +187,20 @@ $cursor=$collection->find($filters,$options);
                     <form method="post" action="comparaison_produits.php">
                     <button type="submit" id ="comparer" name="comparer" disabled>Comparer</button>
                     <div class="checkboxes">
+                    <ul id="datalist">
                     <?php
                     foreach($cursor as $document) {
                         $name=$document['product_name'];
                         $image=$document['image_url'];
                         $code=$document['code'];
-                        echo "<figure><a href='fiche_produit.php?product=$code'><img src='$image' alt='$name' width='200' height='200'><figcaption>$name</figcaption></a><input type='checkbox' id='compare' name='compare[]' value=$code autocomplete='off' onClick='ckChange(this)'></figure>";
-	                }
+                        echo "<li><figure><a href='fiche_produit.php?product=$code'><img src='$image' alt='$name' width='200' height='200'><figcaption>$name</figcaption></a><input type='checkbox' id='compare' name='compare[]' value=$code autocomplete='off' onClick='ckChange(this)'></figure></li>";
+	                    $i=$i+1;
+                    }
                     ?>
+                    </ul>
                     </div>
                     </form>
-                    <button type='button' name='afficherplus'>Afficher plus</button>
+                    <span>Afficher Plus</span>
                 </div>
             </div>
             <div class="row">
@@ -229,6 +231,14 @@ $cursor=$collection->find($filters,$options);
     </div>
     <script>
         var j = 0;
+        $(function () {
+            $('span').click(function () {
+                $('#datalist li:hidden').slice(0, 8).show();
+                if ($('#datalist li').length == $('#datalist li:visible').length) {
+                    $('span ').hide();
+                }
+            });
+        });
         function ckChange(el) {
             var ckName = document.getElementsByName(el.name);
             var i;

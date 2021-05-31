@@ -84,6 +84,23 @@ body {
     flex-wrap: wrap;
 }
 
+#datalist {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    vertical-align: middle;
+    padding: 0 4px;
+    flex: 25%;
+    flex-wrap: wrap;
+}
+
+.checkboxes ul li:nth-child(n+9) {
+    display:none;
+}
+
+span {
+    cursor: pointer;
+}
+
 .column_list {
     text-align: center;
 }

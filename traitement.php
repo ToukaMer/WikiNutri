@@ -97,13 +97,12 @@ elseif (isset($_POST['submit_avancee'])) {
 
     }
 
-    if(isset($_POST['categorie'])){
+	if(isset($_POST['categorie'])){
         $categorie = $_POST['categorie'];
         $regex = new MongoDB\BSON\Regex($categorie, 'i');
         $filters += ["categories"=>$regex];
 
         $_SESSION['categorie'] = $_POST['categorie'];
-
     }
 
     if(isset($_POST['produits_populaires'])){
@@ -130,7 +129,7 @@ elseif (isset($_POST['submit_avancee'])) {
     }
 }
 
-$options += ['limit' => 100];
+$options += ['limit' => 5];
 
 $cursor=$collection->find($filters,$options);
 $i=0;
