@@ -110,11 +110,12 @@ else{
 			$search_value = $_SESSION['ingredient'];
 			if($_SESSION['ingredient_choix']=="oui"){
 				$regex = new MongoDB\BSON\Regex($search_value, 'i');
+				$filters += ["ingredients_text"=>$regex];
 			}
 			elseif ($_SESSION['ingredient_choix']=="non") {
-				$regex = new MongoDB\BSON\Regex('^(?!'.$search_value.'.)*$', 'i');
+				$regex = new MongoDB\BSON\Regex($search_value, 'i');
+                $filters += ["ingredients_text" => ['$not' => $regex]];
             }
-			$filters += ["ingredients_text"=>$regex];
         }
     }
     if(isset($_SESSION['produits_populaires'])){

@@ -77,12 +77,13 @@ elseif (isset($_POST['submit_avancee'])) {
 			$search_value = $_POST['ingredient'];
 			if($_POST['ingredient_choix']=="oui"){
 				$regex = new MongoDB\BSON\Regex($search_value, 'i');
+				$filters += ["ingredients_text"=>$regex];
 			}
 			elseif ($_POST['ingredient_choix']=="non") {
-				$regex = new MongoDB\BSON\Regex('^(?!'.$search_value.'.)*$', 'i');
+				$regex = new MongoDB\BSON\Regex($search_value, 'i');
+                $filters += ["ingredients_text" => ['$not' => $regex]];
             }
-			$filters += ["ingredients_text"=>$regex];
-        }
+		}
 		$_SESSION['ingredient'] = $_POST['ingredient'];
 		$_SESSION['ingredient_choix'] = $_POST['ingredient_choix'];
     }

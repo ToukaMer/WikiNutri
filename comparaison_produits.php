@@ -273,7 +273,7 @@ foreach($cursor_count2 as $document){
                     if ($code != $code_fixe1)
                     	if ($code != $code_fixe2)
                     			if (in_array($count, $random_number_array))
-		                   		 echo "<li><figure><a href='fiche_produit.php?product=$code'><img src='$image' alt='$name' width='400' height='250'><figcaption>$name</figcaption></a></figure></li>";
+		                   		 echo "<li><figure><a href='fiche_produit.php?product=$code'><img src='$image' alt='$name' width='200' height='150'><figcaption>$name</figcaption></a></figure></li>";
 	                $count++;
 	                array_push($code_array, $code);
 
@@ -290,7 +290,7 @@ foreach($cursor_count2 as $document){
                     if ($code != $code_fixe1)
                     	if ($code != $code_fixe2)
                     			if (in_array($count, $random_number_array))
-		                    		echo "<li><figure><a href='fiche_produit.php?product=$code'><img src='$image' alt='$name' width='400' height='250'><figcaption>$name</figcaption></a></figure></li>";
+		                    		echo "<li><figure><a href='fiche_produit.php?product=$code'><img src='$image' alt='$name' width='200' height='150'><figcaption>$name</figcaption></a></figure></li>";
 	                $count++;
                 }
 
