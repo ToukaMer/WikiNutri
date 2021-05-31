@@ -124,8 +124,8 @@ else{
 
     if(isset($_SESSION['allergenes']) && !empty($_SESSION['allergenes'])){
         foreach($_SESSION['allergenes'] as $allergene) {
-            $regex = new MongoDB\BSON\Regex('^(?!' . $allergene . '.)*$', 'i');
-            $filters += ["allergens" => $regex];
+            $regex = new MongoDB\BSON\Regex($allergene , 'i');
+            $filters += ['$or' => [["allergens" => ['$not' => $regex]],['ingredients_text' => ['$not' => $regex]]]];
         }
     }
 

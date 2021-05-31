@@ -89,8 +89,8 @@ elseif (isset($_POST['submit_avancee'])) {
 
     if(isset($_POST['allergenes']) && !empty($_POST['allergenes'])){
         foreach($_POST['allergenes'] as $allergene) {
-            $regex = new MongoDB\BSON\Regex('^(?!' . $allergene . '.)*$', 'i');
-            $filters += ["allergens" => $regex];
+            $regex = new MongoDB\BSON\Regex($allergene, 'i');
+            $filters += ['$or' => [["allergens" => ['$not' => $regex]],['ingredients_text' => ['$not' => $regex]]]];
         }
         $_SESSION['allergenes'] = $_POST['allergenes'];
 
@@ -119,6 +119,8 @@ elseif (isset($_POST['submit_avancee'])) {
 		$_SESSION['nutriment_num'] = $_POST['nutriment_num'];
     }
 }
+
+$options += ['limit' => 100];
 
 $cursor=$collection->find($filters,$options);
 $i=0;
