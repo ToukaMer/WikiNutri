@@ -2,9 +2,9 @@
 require 'vendor/autoload.php';
 session_start();
 $client = new MongoDB\Client(
-    'mongodb+srv://Yosra:iaIqRPWxXN9AsFuF@cluster0.bbe6n.mongodb.net/PRODUITS_DB?retryWrites=true&w=majority');
-$db = $client->PRODUITS_DB;
-$collection = $client->$db->PRODUITS;
+    'mongodb+srv://Yosra:iaIqRPWxXN9AsFuF@cluster0.bbe6n.mongodb.net/PRODUCTS_DB?retryWrites=true&w=majority');
+$db = $client->PRODUCTS_DB;
+$collection = $client->$db->PRODUCTS;
 $filters = [];
 $options = [];
 
