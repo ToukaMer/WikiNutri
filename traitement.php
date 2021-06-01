@@ -55,7 +55,7 @@ elseif (isset($_POST['submit_avancee'])) {
     }
 
 	if(isset($_POST['search_marque'])) {
-        if($_POST['search_marque'] != " ") {
+        if($_POST['search_marque'] != "") {
 			$search_value = $_POST['search_marque'];
 			$regex = new MongoDB\BSON\Regex($search_value, 'i');
 			$filters += ["brands"=>$regex];
@@ -64,7 +64,7 @@ elseif (isset($_POST['submit_avancee'])) {
 	
     }
 	if(isset($_POST['search_label'])) {
-        if($_POST['search_label'] != " ") {
+        if($_POST['search_label'] != "") {
 			$search_value = $_POST['search_label'];
 			$regex = new MongoDB\BSON\Regex($search_value, 'i');
 			$filters += ["labels"=>$regex];
@@ -78,6 +78,7 @@ elseif (isset($_POST['submit_avancee'])) {
 			if($_POST['ingredient_choix']=="oui"){
 				$regex = new MongoDB\BSON\Regex($search_value, 'i');
 				$filters += ["ingredients_text"=>$regex];
+				
 			}
 			elseif ($_POST['ingredient_choix']=="non") {
 				$regex = new MongoDB\BSON\Regex($search_value, 'i');
@@ -86,6 +87,7 @@ elseif (isset($_POST['submit_avancee'])) {
 		}
 		$_SESSION['ingredient'] = $_POST['ingredient'];
 		$_SESSION['ingredient_choix'] = $_POST['ingredient_choix'];
+		
     }
 
     if(isset($_POST['allergenes']) && !empty($_POST['allergenes'])){
@@ -98,12 +100,14 @@ elseif (isset($_POST['submit_avancee'])) {
     }
 
 	if(isset($_POST['categorie'])){
-        $categorie = $_POST['categorie'];
-        $regex = new MongoDB\BSON\Regex($categorie, 'i');
-        $filters += ["categories"=>$regex];
+		if($_POST['categorie'] != 'tous') {
+			$categorie = $_POST['categorie'];
+			$regex = new MongoDB\BSON\Regex($categorie, 'i');
+			$filters += ["categories"=>$regex];
 
         $_SESSION['categorie'] = $_POST['categorie'];
     }
+	}
 
     if(isset($_POST['produits_populaires'])){
         $filters += ['nb_vues' => ['$gte' => 1]];
@@ -133,6 +137,7 @@ $options += ['limit' => 5];
 
 $cursor=$collection->find($filters,$options);
 $i=0;
+
 foreach($cursor as $document){
 	$i=$i+1;
 }
