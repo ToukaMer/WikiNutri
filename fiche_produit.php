@@ -94,7 +94,7 @@ function multipleexplode ($delimiters,$string) {
             <div class="row">
                 <h2>Lancez une autre recherche</h2>
                 <form method="post" action="traitement.php">
-                    <p><input type="search" id="site-search" name="search_name" placeholder="Insérer le nom de l'aliment"></p>
+                    <p><input type="search" id="site-search" name="search_name" placeholder="Insérer le nom de l'aliment" required></p>
                     <p>
                         <button type="submit" name="rapide">Recherche rapide</button>
                     </p>

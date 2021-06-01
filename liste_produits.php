@@ -106,7 +106,7 @@ else{
 	
     }
     if(isset($_SESSION['ingredient'])) {
-        if($_SESSION['ingredient'] != " ") {
+        if($_SESSION['ingredient'] != "") {
 			$search_value = $_SESSION['ingredient'];
 			if($_SESSION['ingredient_choix']=="oui"){
 				$regex = new MongoDB\BSON\Regex($search_value, 'i');
@@ -206,7 +206,7 @@ $cursor=$collection->find($filters,$options);
             <div class="row">
                 <h2>Lancez une autre recherche</h2>
                 <form method="post" action="traitement.php">
-                    <p><input type="search" id="site-search" name="search_name" placeholder="Insérer le nom de l'aliment"></p>
+                    <p><input type="search" id="site-search" name="search_name" placeholder="Insérer le nom de l'aliment" required></p>
                     <p>
                         <button type="submit" name="rapide">Recherche rapide</button>
                     </p>

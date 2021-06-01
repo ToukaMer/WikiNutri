@@ -73,7 +73,7 @@ elseif (isset($_POST['submit_avancee'])) {
 	
     }
 	if(isset($_POST['ingredient'])) {
-        if($_POST['ingredient'] != " ") {
+        if($_POST['ingredient'] != "") {
 			$search_value = $_POST['ingredient'];
 			if($_POST['ingredient_choix']=="oui"){
 				$regex = new MongoDB\BSON\Regex($search_value, 'i');
